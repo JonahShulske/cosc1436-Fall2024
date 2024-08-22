@@ -15,6 +15,7 @@
 // C++ compiles its code, so it runs from top to bottom. You are also able to put blanks in 2 lines of code, it shouldn't throw an eror.
 /* Indents, spaces, and blanks are mostly just for readablity.Try to use a consistant style of code when writing.
  * Indent when writing a new block of code. Language is also case-sensitive. Cannot use arbitrary casing.
+ *
  */ 
 
 #include <iostream>
