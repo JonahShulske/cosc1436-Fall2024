@@ -50,6 +50,5 @@ int main() //Entry Point to program
     std::cout << "We rate this movie " << rating << " out of " << stars << " stars! \n";
 
 
-}
 
 
