@@ -73,10 +73,10 @@ int main()
 
     double classAverage = ((labAverage + examAverage + partiGrade + finalExam) / 4);    //Calculation for Class Average grade
     cout << fixed << setprecision(2);
-    std::cout << "Lab Average (65%): " << labAverage << endl;
-    std::cout << "Exam Average (20%): " << examAverage << endl;
-    std::cout << "Participation (5%): " << partiGrade << endl;
-    std::cout << "Final Exam (10%): " << finalExam << endl;
-    std::cout << "Class Average: " << classAverage << endl;
+    std::cout << "Lab Average (65%): " << labAverage << "%" << endl;
+    std::cout << "Exam Average (20%): " << examAverage << "%" << endl;
+    std::cout << "Participation (5%): " << partiGrade << "%" << endl;
+    std::cout << "Final Exam (10%): " << finalExam << "%" << endl;
+    std::cout << "Class Average: " << classAverage << "%" << endl;
 
 }
