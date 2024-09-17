@@ -7,7 +7,7 @@
 #include <string>
 #include <iomanip>
 
-using namespace std; //Only using std:: for when I'm actually printing lines so that I can tell it's something the user will see.
+using namespace std; //Only using std:: for when printing lines that the user will be able to see.
 
 int main()
 {
@@ -66,7 +66,7 @@ int main()
     cout << "\n";
 
     std::cout << userName << ", " << "your other grades are: " << endl;
-    std::cout << "Participation Grade: " << partiGrade << endl;     //Simply printing the user's other grades
+    std::cout << "Participation Grade: " << partiGrade << endl;     //Printing the user's other grades
     std::cout << "Final Exam Grade: " << finalExam << endl;
 
     cout << "\n";
@@ -74,15 +74,15 @@ int main()
     double labAverageWei, examAverageWei, partiGradeWei, finalExamWei;
     labAverageWei = (labAverage * 0.65);
     examAverageWei = (examAverage * 0.20);      //Calculation for weights on grades
-    partiGradeWei = (partiGrade = 0.05);
+    partiGradeWei = (partiGrade * 0.05);
     finalExamWei = (finalExam * 0.10);
 
     double classAverage = (labAverageWei + examAverageWei + partiGradeWei + finalExamWei);    //Calculation for Class Average grade
     cout << fixed << setprecision(2);
-    std::cout << "Lab Average (65%): " << labAverageWei << "%" << endl;
-    std::cout << "Exam Average (20%): " << examAverageWei << "%" << endl;
-    std::cout << "Participation (5%): " << partiGradeWei << "%" << endl;
-    std::cout << "Final Exam (10%): " << finalExamWei << "%" << endl;
+    std::cout << "Lab Average (65%): " << labAverage << "%" << endl;
+    std::cout << "Exam Average (20%): " << examAverage << "%" << endl;
+    std::cout << "Participation (5%): " << partiGrade << "%" << endl;
+    std::cout << "Final Exam (10%): " << finalExam << "%" << endl;
     std::cout << "Class Average: " << classAverage << "%" << endl;
 
 }
