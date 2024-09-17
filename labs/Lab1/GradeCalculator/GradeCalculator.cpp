@@ -77,7 +77,7 @@ int main()
     partiGradeWei = (partiGrade = 0.05);
     finalExamWei = (finalExam * 0.10);
 
-    double classAverage = ((labAverageWei + examAverageWei + partiGradeWei + finalExamWei) / 4);    //Calculation for Class Average grade
+    double classAverage = (labAverageWei + examAverageWei + partiGradeWei + finalExamWei);    //Calculation for Class Average grade
     cout << fixed << setprecision(2);
     std::cout << "Lab Average (65%): " << labAverageWei << "%" << endl;
     std::cout << "Exam Average (20%): " << examAverageWei << "%" << endl;
