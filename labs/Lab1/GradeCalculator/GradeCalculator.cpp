@@ -22,7 +22,7 @@ int main()
     std::cout << "Please enter Lab Grade #1: ";
     cin >> labGrade1;
     std::cout << "Please enter Lab Grade #2: ";
-    cin >> labGrade2;                          //Prompting user for Lab Grades
+    cin >> labGrade2;                               //Prompting user for Lab Grades
     std::cout << "Please enter Lab Grade #3: ";
     cin >> labGrade3;
     std::cout << "Please enter Lab Grade #4: ";
@@ -71,12 +71,18 @@ int main()
 
     cout << "\n";
 
-    double classAverage = ((labAverage + examAverage + partiGrade + finalExam) / 4);    //Calculation for Class Average grade
+    double labAverageWei, examAverageWei, partiGradeWei, finalExamWei;
+    labAverageWei = (labAverage * 0.65);
+    examAverageWei = (examAverage * 0.20);      //Calculation for weights on grades
+    partiGradeWei = (partiGrade = 0.05);
+    finalExamWei = (finalExam * 0.10);
+
+    double classAverage = ((labAverageWei + examAverageWei + partiGradeWei + finalExamWei) / 4);    //Calculation for Class Average grade
     cout << fixed << setprecision(2);
-    std::cout << "Lab Average (65%): " << labAverage << "%" << endl;
-    std::cout << "Exam Average (20%): " << examAverage << "%" << endl;
-    std::cout << "Participation (5%): " << partiGrade << "%" << endl;
-    std::cout << "Final Exam (10%): " << finalExam << "%" << endl;
+    std::cout << "Lab Average (65%): " << labAverageWei << "%" << endl;
+    std::cout << "Exam Average (20%): " << examAverageWei << "%" << endl;
+    std::cout << "Participation (5%): " << partiGradeWei << "%" << endl;
+    std::cout << "Final Exam (10%): " << finalExamWei << "%" << endl;
     std::cout << "Class Average: " << classAverage << "%" << endl;
 
 }
