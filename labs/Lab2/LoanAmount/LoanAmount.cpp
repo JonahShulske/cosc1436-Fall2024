@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-    double loanAmount;
+    int loanAmount;
 
     std::cout << "Please Enter Loan Amount ($1-$1,000): ";
     cin >> loanAmount;
@@ -36,9 +36,11 @@ int main()
         cin >> interestRate;
     }
 
-    double paymentAmount;
+    int paymentAmount;
     std::cout << "Please Enter Payment Amount ($1 - Loan Amount $): ";
     cin >> paymentAmount;
+
+    interestRate = (interestRate / 100);
 
     if (paymentAmount < 1 || paymentAmount > loanAmount)
     {
@@ -47,9 +49,12 @@ int main()
         cin >> paymentAmount;
     }
 
+    double newBalance = (loanAmount - paymentAmount) + (loanAmount * interestRate);
+
     std::cout << loanAmount << endl;
     std::cout << interestRate << endl;
     std::cout << paymentAmount << endl;
+    std::cout << newBalance;
 
    /* std::cout << left << setw(6) << "Month" << setw(8) << "Balance" << setw(8) << "Payment" << setw(9) << "Interest" << setw(11) << "New Balance" << endl;
     std::cout << setw(42) << setfill('-') << "" << setfill(' ') << endl;
