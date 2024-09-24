@@ -9,24 +9,32 @@
 
 using namespace std;
 
+// Integral data type with named values
+enum MenuCommand
+{
+    MC_AddMovie,
+    MC_EditMovie,
+    MC_DeleteMovie,
+    MC_ViewMovie
+};
+
 struct Movie
 {
     // Movie: Title, Actors, Run Length, Description, Genre(s), Director(s), Release Year, MPPA Rating
-     
+
     // Required
     string Title;
 
-    // At least 0 minutes
+    // At least 0 minutes, Less than 1440
     int runLength;
 
     // Optional
     string Description;
 
-    // At least 1900
+    // At least 1900, Before 2100
     int releaseYear;
 
     bool isClassic;
-
 
 };
 
@@ -76,6 +84,52 @@ int main()
      * logical_op::|| OR  (Binary operator) One or the other can be true/false, and it will return true/false.
      * !Eb will give the opposite of whichever the operator returns
      */
+
+
+    ////// Show Menu
+    std::cout << "Movie Library" << endl;
+    std::cout << "---------------" << endl;
+    std::cout << "A)dd Movie" << endl;
+    std::cout << "E)dit Movie" << endl;
+    std::cout << "D)elete Movie" << endl;
+    std::cout << "V)iew Movie" << endl;
+
+     //// Get input
+    char input;
+    cin >> input;
+
+    MenuCommand menuCommand;
+
+    switch (input)
+    {
+        case 'A':
+        case 'a': menuCommand = 1; break;
+
+        case 'E':
+        case 'e': menuCommand = 2; break;
+                  
+        case 'D':
+        case 'd': menuCommand = 3; break;
+                 
+        case 'V': 
+        case 'v': menuCommand = 4; break;
+
+        default:  std::cout << "Bad input" << endl; break;
+    }
+
+
+    // Handle Menu Command
+    switch (menuCommand)
+    {
+
+        case MenuCommand::MC_AddMovie:
+        case MenuCommand::MC_EditMovie:
+        case MenuCommand::MC_DeleteMovie:
+        case MenuCommand::MC_ViewMovie:
+
+    }
+
+
 
     ////// Add a new movie
     // Create a new movie
@@ -137,14 +191,6 @@ int main()
         cin >> movie.releaseYear;
     }
 
-    /*if (movie.releaseYear < 1900)
-    {
-        std::cout << "ERROR: movie release year must be after the year 1900" << endl;
-
-        std::cout << "Enter movie release year (1900+): ";
-        cin >> movie.releaseYear;
-    }*/
-
 
     // Get the optional description
     std::cout << "Enter the optional description: ";
@@ -156,17 +202,41 @@ int main()
     std::cout << "Is this a classic? (Y/N) ";
     cin >> isClassic;
 
+      /* Switch(Select) Statemet - Replacement for if - elseif, where same expression compared to multiple values.
+      * 1. Must compared a single expression to one or more constant values with equality.
+      * 2. Switch expression must be an integral type. Cannot use double, string, boolean, etc. 
+      * 3. Each case label must be a compile time constant expression.
+      * 4. Each case label must be unique.
+      */
 
-    //if (isClassic == 'Y')
-    //    movie.isClassic = true;
-    //else if (isClassic == 'y')
-    //    movie.isClassic = true;
-    //else if (isClassic == 'N')
-    //    movie.isClassic = false;
-    //else if (isClassic == 'n')
-    //    movie.isClassic = false;
+    switch (isClassic)
+    {
+        case 'Y': movie.isClassic = true; break; // Can remove this if wanted, to allow for fallthrough
+        case 'y': movie.isClassic = true; break;
 
-    if (isClassic == 'Y' || isClassic == 'y')
+        case 'N': movie.isClassic = false; break; // Can remove this if wanted, to allow for fallthrough
+        case 'n': movie.isClassic = false; break;
+
+        default:;
+        {
+            std::cout << "ERROR: Enter (Y/N) characters only" << endl;
+
+            std::cout << "Is this a classic? (Y/N) ";
+            cin >> isClassic;
+        }
+    }
+
+    
+     /* switch_stmt ::= switch (E) 
+     * {
+     *    case_stmt;
+     * }
+     * 
+     * case_stmt ::= case Ecc : s;
+     * 
+     */
+
+    /*if (isClassic == 'Y' || isClassic == 'y')
         movie.isClassic = true;
     else if (isClassic == 'N' || isClassic == 'n')
         movie.isClassic = false;
@@ -176,27 +246,41 @@ int main()
 
         std::cout << "Is this a classic? (Y/N) ";
         cin >> isClassic;
-    }
+    }*/
 
-    ///*if (isClassic == 'Y')
-    //    movie.isClassic = true;
-    //if (isClassic == 'y')
-    //    movie.isClassic = true;
-    //if (isClassic == 'N')
-    //    movie.isClassic = false;
-    //if (isClassic == 'n')
-    //    movie.isClassic = false;*/
 
     ////// Display movie details
+    
+    // L O N G  V E R S I O N
+   /* if (movie.isClassic)
+        std::cout << "Is it a Classic? Yes" << endl;
+    else
+        std::cout << "Is it a Classic? No" << endl;*/
+    /*string classicIndicator;
+    if (movie.isClassic)
+        classicIndicator = "Yes";
+    else
+        classicIndicator = "No";
+
+    // Better, but still L O N G
+    if (movie.isClassic)
+        std::cout << "Is it a Classic? " << classicIndicator << endl;
+    else
+        std::cout << "Is it a Classic? " << classicIndicator << endl;
+    */
+
+    // Shorter form, using conditional operator => Eb ? Et : Ef
+    /* string classicIndicator = movie.isClassic ? "Yes": "No";
+       std::cout << "Is it a classic? " << classicIndicator << endl;
+     */
 
     std::cout << "---------------" << endl;
     std::cout << movie.Title << " (" << movie.releaseYear << ")" << endl;
-    std::cout << "Run Length in minutes: " << movie.runLength << endl;
-    if (movie.isClassic)
-        std::cout << "Is it a Classic? Yes" << endl;
-    else
-        std::cout << "Is it a Classic? No" << endl;
+    std::cout << "Run Length in minutes: " << movie.runLength << endl; 
+    std::cout << "Is it a classic? " << (movie.isClassic ? "Yes" : "No") << endl;   // Shortest version. Eb ? Et : Ef.  Et and Ef must be the exact same type. No coercion.
     if (movie.Description != "")
         std::cout << movie.Description << endl;
     std::cout << "---------------" << endl;
+
+
 }
