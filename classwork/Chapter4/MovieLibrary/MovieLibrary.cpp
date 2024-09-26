@@ -9,15 +9,6 @@
 
 using namespace std;
 
-// Integral data type with named values
-enum MenuCommand
-{
-    MC_AddMovie,
-    MC_EditMovie,
-    MC_DeleteMovie,
-    MC_ViewMovie
-};
-
 struct Movie
 {
     // Movie: Title, Actors, Run Length, Description, Genre(s), Director(s), Release Year, MPPA Rating
@@ -37,6 +28,24 @@ struct Movie
     bool isClassic;
 
 };
+
+// Integral data type with named values
+enum MenuCommand
+{
+    //MC_Begin, // Common in operating systems and/or old style coding.
+    AddMovie = 1,        // const int MenuCommand::MC_AddMovie = 0;
+    EditMovie = 2, 
+    DeleteMovie = 3,
+    ViewMovie = 4
+    //MC_End    // Common in operating systems and/or old style coding.
+};
+
+//enum TestEnum
+//{
+//    AddMovie
+//};
+
+//TestEnum testValue = TestEnum::TE_AddMovie;
 
 int main()
 {
@@ -85,6 +94,14 @@ int main()
      * !Eb will give the opposite of whichever the operator returns
      */
 
+    /* 
+     * X++ Prefix incriment - Stores off original value of variable, and returns X++ as original value, and returns X back as value of expression plus 1. (X = 10)     cout << X++ << X    returns: 10 11
+     * ++X Postfix incriment - Incriment X by 1, and then returns X as value of original value + 1, returns ++X as value +1.   cout << ++X << X    returns: 12 12
+     * X-- Prefix decrease - Stores off original value of variable, and returns X-- as original value, and returns X back as value of expression minus 1
+     * --X Postfix decrease - Decrease X by 1, and then returns X as value of original value - 1, returns --X as value -1
+    */
+
+
 
     ////// Show Menu
     std::cout << "Movie Library" << endl;
@@ -93,59 +110,78 @@ int main()
     std::cout << "E)dit Movie" << endl;
     std::cout << "D)elete Movie" << endl;
     std::cout << "V)iew Movie" << endl;
+    std::cout << "Enter Input: ";
+
+
 
      //// Get input
-    char input;
-    cin >> input;
+    /* While Loop       while (Eb) = > S;
+     * Pretest, S executes 0 or more times
+     */
+    MenuCommand menuCommand = (MenuCommand)0;
+    /*bool done = false;
+    while (!done)*/
+    // while (menuCommand == 0);  CREATES INFINITE LOOP
 
-    MenuCommand menuCommand;
-
-    switch (input)
+    while (menuCommand == 0)
     {
-        case 'A':
-        case 'a': menuCommand = 1; break;
+        char input;
+        cin >> input;
 
-        case 'E':
-        case 'e': menuCommand = 2; break;
-                  
-        case 'D':
-        case 'd': menuCommand = 3; break;
-                 
-        case 'V': 
-        case 'v': menuCommand = 4; break;
+        switch (input)
+        {
+            case 'A':
+            case 'a': menuCommand = MenuCommand::AddMovie; break;
 
-        default:  std::cout << "Bad input" << endl; break;
-    }
+            case 'E':
+            case 'e': menuCommand = MenuCommand::EditMovie; break;
 
+            case 'D':
+            case 'd': menuCommand = MenuCommand::DeleteMovie; break;
+
+            case 'V':
+            case 'v': menuCommand = MenuCommand::ViewMovie; break;
+
+            default:  std::cout << "ERROR: Bad input" << endl; break;
+        }
+    };
+    cin.ignore();
+
+    // int shouldntWork = MenuCommand::MC_AddMovie;
+    // menuCommand = (MenuCommand)1;
 
     // Handle Menu Command
     switch (menuCommand)
     {
 
-        case MenuCommand::MC_AddMovie:
-        case MenuCommand::MC_EditMovie:
-        case MenuCommand::MC_DeleteMovie:
-        case MenuCommand::MC_ViewMovie:
+        case MenuCommand::AddMovie:
+        case MenuCommand::EditMovie:
+        case MenuCommand::DeleteMovie:
+        case MenuCommand::ViewMovie: std::cout << "Not yet implimented" << endl;
 
     }
-
 
 
     ////// Add a new movie
     // Create a new movie
     Movie movie; // = {0};
 
+    //   if (movie.Title == "")
+    //{
+    //    std::cout << "ERROR: Title is Required" << endl; // Executed 0 or 1 time
+    //    std::cout << "Enter a Title: ";
+    //    getline(cin, movie.Title);
+    //};
+
     // Get required title
-    std::cout << "Enter a Title: ";
-    getline(cin, movie.Title);
+       while (movie.Title == "")
+       {
+           std::cout << "Enter a Title: ";
+           getline(cin, movie.Title);
 
-    if (movie.Title == "")
-    {
-        std::cout << "ERROR: Title is Required" << endl; // Executed 0 or 1 time
-        std::cout << "Enter a Title: ";
-        getline(cin, movie.Title);
-    };
-
+           if (movie.Title == "")
+               std::cout << "ERROR: Title is Required" << endl;
+       };
 
     // Get run length, at least 0 minutes
     std::cout << "Enter run length in minutes: ";
@@ -171,26 +207,37 @@ int main()
     //    cin >> movie.runLength;
     //}
 
-    if (movie.runLength < 0 || movie.runLength > 1440)
-    {
-        std::cout << "Error: Run length must be between 0 - 1440 minutes" << endl;
-
+    movie.runLength = -1;
+    while (movie.runLength < 0 || movie.runLength > 1440)
+    {    
         std::cout << "Enter run length in minutes: ";
         cin >> movie.runLength;
-    }
 
-    // Get release year
-    std::cout << "Enter movie release year (1900-2100): ";
-    cin >> movie.releaseYear;
+        if (movie.runLength < 0 || movie.runLength > 1440)
+        {
+            std::cout << "Error: Run length must be between 0 - 1440 minutes" << endl;
 
-    if (movie.releaseYear < 1900 || movie.releaseYear > 2100)
+            /*std::cout << "Enter run length in minutes: ";
+            cin >> movie.runLength;*/
+        }
+    };
+
+
+        // Get release year
+    while (movie.releaseYear < 1900 || movie.releaseYear > 2100)
     {
-        std::cout << "ERROR: Movie release year must range from the years 1900-2100" << endl;
-
-        std::cout << "Enter movie release year (1900-2100) ";
+        std::cout << "Enter movie release year (1900-2100): ";
         cin >> movie.releaseYear;
-    }
 
+        if (movie.releaseYear < 1900 || movie.releaseYear > 2100)
+        {
+            std::cout << "ERROR: Movie release year must range from the years 1900-2100" << endl;
+
+           /* std::cout << "Enter movie release year (1900-2100) ";
+            cin >> movie.releaseYear;*/
+
+        }
+    };
 
     // Get the optional description
     std::cout << "Enter the optional description: ";
@@ -198,33 +245,46 @@ int main()
     getline(cin, movie.Description);
 
     // Get Is Classic
-    char isClassic;
-    std::cout << "Is this a classic? (Y/N) ";
-    cin >> isClassic;
-
-      /* Switch(Select) Statemet - Replacement for if - elseif, where same expression compared to multiple values.
-      * 1. Must compared a single expression to one or more constant values with equality.
-      * 2. Switch expression must be an integral type. Cannot use double, string, boolean, etc. 
-      * 3. Each case label must be a compile time constant expression.
-      * 4. Each case label must be unique.
-      */
-
-    switch (isClassic)
+    bool done = false;
+    while (!done)
     {
-        case 'Y': movie.isClassic = true; break; // Can remove this if wanted, to allow for fallthrough
-        case 'y': movie.isClassic = true; break;
+        char isClassic;
+        std::cout << "Is this a classic? (Y/N) ";
+        cin >> isClassic;
 
-        case 'N': movie.isClassic = false; break; // Can remove this if wanted, to allow for fallthrough
-        case 'n': movie.isClassic = false; break;
+          /* Switch(Select) Statemet - Replacement for if - elseif, where same expression compared to multiple values.
+          * 1. Must compared a single expression to one or more constant values with equality.
+          * 2. Switch expression must be an integral type. Cannot use double, string, boolean, etc.
+          * 3. Each case label must be a compile time constant expression.
+          * 4. Each case label must be unique.
+          */
 
-        default:;
+        switch (isClassic)
         {
-            std::cout << "ERROR: Enter (Y/N) characters only" << endl;
+            case 'Y': movie.isClassic = true; done = true; break; // Can remove this if wanted, to allow for fallthrough
+            case 'y': movie.isClassic = true; done = true; break;
 
-            std::cout << "Is this a classic? (Y/N) ";
-            cin >> isClassic;
+            case 'N': movie.isClassic = false; done = true; break; // Can remove this if wanted, to allow for fallthrough
+            case 'n': movie.isClassic = false; done = true; break;
+
+            default:;
+            {
+                std::cout << "ERROR: Enter (Y/N) characters only" << endl;
+
+                /*std::cout << "Is this a classic? (Y/N) ";
+                cin >> isClassic;*/
+            }
         }
-    }
+    };
+
+    std::cout << "---------------" << endl;
+    std::cout << movie.Title << " (" << movie.releaseYear << ")" << endl;
+    std::cout << "Run Length in minutes: " << movie.runLength << endl;
+    std::cout << "Is it a classic? " << (movie.isClassic ? "Yes" : "No") << endl;   // Shortest version. Eb ? Et : Ef.  Et and Ef must be the exact same type. No coercion.
+    if (movie.Description != "")
+        std::cout << movie.Description << endl;
+    std::cout << "---------------" << endl;
+
 
     
      /* switch_stmt ::= switch (E) 
@@ -274,13 +334,6 @@ int main()
        std::cout << "Is it a classic? " << classicIndicator << endl;
      */
 
-    std::cout << "---------------" << endl;
-    std::cout << movie.Title << " (" << movie.releaseYear << ")" << endl;
-    std::cout << "Run Length in minutes: " << movie.runLength << endl; 
-    std::cout << "Is it a classic? " << (movie.isClassic ? "Yes" : "No") << endl;   // Shortest version. Eb ? Et : Ef.  Et and Ef must be the exact same type. No coercion.
-    if (movie.Description != "")
-        std::cout << movie.Description << endl;
-    std::cout << "---------------" << endl;
 
 
 }
