@@ -183,35 +183,12 @@ int main()
                std::cout << "ERROR: Title is Required" << endl;
        };
 
-    // Get run length, at least 0 minutes
-    std::cout << "Enter run length in minutes: ";
-    cin >> movie.runLength;
-
-    //if (movie.runLength <= 0)
-    //{
-
-    //    // Look at additional things...
-
-    //    if (movie.runLength < 0) 
-    //    {
-    //        std::cout << "ERROR: Run Length must be at least 0 minutes" << endl;
-
-    //        std::cout << "Enter run length in minutes: ";
-    //        cin >> movie.runLength;
-    //    }
-    //} else  if (movie.runLength >= 1440)
-    //{
-    //    std::cout << "ERROR: Run Length cannot be over one day long" << endl;
-
-    //    std::cout << "Enter run length in minutes: ";
-    //    cin >> movie.runLength;
-    //}
-
-    movie.runLength = -1;
+       movie.runLength = -1;
     while (movie.runLength < 0 || movie.runLength > 1440)
-    {    
+    { // Get run length, at least 0 minutes
         std::cout << "Enter run length in minutes: ";
         cin >> movie.runLength;
+
 
         if (movie.runLength < 0 || movie.runLength > 1440)
         {
@@ -220,6 +197,26 @@ int main()
             /*std::cout << "Enter run length in minutes: ";
             cin >> movie.runLength;*/
         }
+
+        //if (movie.runLength <= 0)
+        //{
+
+        //    // Look at additional things...
+
+        //    if (movie.runLength < 0) 
+        //    {
+        //        std::cout << "ERROR: Run Length must be at least 0 minutes" << endl;
+
+        //        std::cout << "Enter run length in minutes: ";
+        //        cin >> movie.runLength;
+        //    }
+        //} else  if (movie.runLength >= 1440)
+        //{
+        //    std::cout << "ERROR: Run Length cannot be over one day long" << endl;
+
+        //    std::cout << "Enter run length in minutes: ";
+        //    cin >> movie.runLength;
+        ///
     };
 
 
