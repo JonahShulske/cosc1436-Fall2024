@@ -1,6 +1,6 @@
 /* Movie Library
  * Jonah Shulske
- * 9/16/24 + 9/18/24
+ * 9/16/24 + 9/18/24 + 9/23/24 + 9/25/24 + 9/30/24
  */
 
 #include <iostream>
@@ -26,6 +26,8 @@ struct Movie
     int releaseYear;
 
     bool isClassic;
+
+    string Genre;
 
 };
 
@@ -97,8 +99,8 @@ int main()
     /* 
      * X++ Prefix incriment - Stores off original value of variable, and returns X++ as original value, and returns X back as value of expression plus 1. (X = 10)     cout << X++ << X    returns: 10 11
      * ++X Postfix incriment - Incriment X by 1, and then returns X as value of original value + 1, returns ++X as value +1.   cout << ++X << X    returns: 12 12
-     * X-- Prefix decrease - Stores off original value of variable, and returns X-- as original value, and returns X back as value of expression minus 1
-     * --X Postfix decrease - Decrease X by 1, and then returns X as value of original value - 1, returns --X as value -1
+     * X-- Prefix decriment - Stores off original value of variable, and returns X-- as original value, and returns X back as value of expression minus 1
+     * --X Postfix decriment - Decrease X by 1, and then returns X as value of original value - 1, returns --X as value -1
     */
 
 
@@ -220,7 +222,7 @@ int main()
     };
 
 
-        // Get release year
+    // Get release year
     while (movie.releaseYear < 1900 || movie.releaseYear > 2100)
     {
         std::cout << "Enter movie release year (1900-2100): ";
@@ -273,11 +275,71 @@ int main()
             }
         }
     };
+    cin.ignore();
+
+    //Get Genre(s)
+    //int genreCount = 0;
+    //while (genreCount < 5) // = 0, < N (rarely) = 1, <= N
+    //{
+    //    std::cout << "Enter Optional Genre " << (genreCount + 1) << ": ";
+
+    //    string genre;
+    //    getline(cin, genre);
+
+    //    if (genre != "")
+    //    {
+    //        movie.Genre += genre + ", ";
+    //    }
+
+    //    genreCount++; //Prefix
+
+    //};
+     
+
+    /*For Loop - Designed to iterate a fixed number of times, with a well known start and end. - Most complicated in entire language
+    *     (b4 loop)  (condition) (test)
+    * for (init-expr; test-expr; update-expr)
+    *     statement;
+    */ 
+
+    //Get Genre(s)
+    for (int genreIndex = 0; genreIndex < 5; ++genreIndex)
+    {
+        std::cout << "Enter Optional Genre " << (genreIndex + 1) << ": ";
+
+        string genre;
+        getline(cin, genre);
+        
+        if (genre == "")
+        {
+            break; // Exists loop unconditionally
+            continue; // Loops only - Stops the current interation and loops again. 
+            movie.Genre += genre + ", ";
+        }
+    };
+
+    // More complicated and complex version of the for loop
+    //for (int index = 0, int y = 6; index < 5 && 5 == 7, 5 == 99, index > y; ++index, y+=2)       // Expression , expression , expression
+    //{
+    //};
+
+    /*int someIndex = 0;
+    for (; someIndex < 5;)
+    {
+    };*/
+
+    //for (;;) // Infinite loop
+    //{
+    //};
+
+    // std::cout << genreIndex; Is a compiler error. The int only exists within this loop.
 
     std::cout << "---------------" << endl;
     std::cout << movie.Title << " (" << movie.releaseYear << ")" << endl;
     std::cout << "Run Length in minutes: " << movie.runLength << endl;
     std::cout << "Is it a classic? " << (movie.isClassic ? "Yes" : "No") << endl;   // Shortest version. Eb ? Et : Ef.  Et and Ef must be the exact same type. No coercion.
+    if (movie.Genre != "")
+        std::cout << "Movie Genre(s): " << movie.Genre << endl;
     if (movie.Description != "")
         std::cout << movie.Description << endl;
     std::cout << "---------------" << endl;
@@ -330,6 +392,12 @@ int main()
     /* string classicIndicator = movie.isClassic ? "Yes": "No";
        std::cout << "Is it a classic? " << classicIndicator << endl;
      */
+
+
+
+
+
+
 
 
 
