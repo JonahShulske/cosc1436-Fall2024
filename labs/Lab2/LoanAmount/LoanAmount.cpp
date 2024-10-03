@@ -77,14 +77,12 @@ int main()
         }
     };
 
+    cout << "\n";
 
-    std::cout << loanAmount << endl;
-    std::cout << interestRate << endl;
-    std::cout << paymentAmount << endl;
-
+    cout << fixed << setprecision(2);
     std::cout << left << setw(6) << "Month" << setw(8) << "Balance" << setw(8) << "Payment" << setw(9) << "Interest" << setw(11) << "New Balance" << endl;
     std::cout << setw(42) << setfill('-') << "" << setfill(' ') << endl;
-    std::cout << setw(6) << "1" << setw(8) << loanAmount << setw(8) << (paymentAmount * 0) << setw(9) << (interestRate * 0) << setw(11) << loanAmount << endl;
+    std::cout << setw(6) << "1" << "$" << setw(8) << loanAmount << "$" << setw(9) << (paymentAmount * 0) << "$" << setw(9) << (interestRate * 0) << "$" << setw(11) << loanAmount << endl;
 
     double newBalance = (loanAmount - paymentAmount) + ((loanAmount - paymentAmount) * interestRate);
     double statementBalance = loanAmount;
@@ -96,14 +94,14 @@ int main()
         double interestPayment = (statementBalance - paymentAmount) * interestRate;
         
         cout << fixed << setprecision(2);
-        std::cout << setw(6) << monthIndex + 1 << setw(8) << statementBalance << setw(8) << paymentAmount << setw(9) << interestPayment << setw(11) << newBalance << endl;
+        std::cout << setw(6) << monthIndex + 1 << "$" << setw(7) << statementBalance << "$ " << setw(11) << paymentAmount << "$" << setw(18) << interestPayment << "$" << setw(9) << newBalance << endl;
         
         statementBalance = newBalance;
 
-        if (statementBalance < interestPayment)
+        if (statementBalance < paymentAmount)
         {
-            interestPayment = statementBalance;
-
+            paymentAmount = statementBalance;
+            interestPayment = 0;
         }
     };
 

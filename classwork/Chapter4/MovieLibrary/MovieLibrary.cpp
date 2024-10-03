@@ -9,6 +9,16 @@
 
 using namespace std;
 
+
+
+/*                    while                | do while              | for
+ Statement testing:   0 or more (pre-test) | 1 or more (post-test) | 0 or more (pre-test)
+ # of iterations:     Infinite             | Infinite              | Until parameters met (fixed)
+ break/continue       Yes                  | Yes                   | Yes
+*/
+
+
+
 struct Movie
 {
     // Movie: Title, Actors, Run Length, Description, Genre(s), Director(s), Release Year, MPPA Rating
@@ -103,6 +113,44 @@ int main()
      * --X Postfix decriment - Decrease X by 1, and then returns X as value of original value - 1, returns --X as value -1
     */
 
+    // Nested Loop Demonstration
+
+    //int iterations = 0;
+    //for (int i = 0; i < 100; ++i)
+    //{
+
+    //    /*if (i != 0)
+    //    {
+    //        char choice;
+    //        std::cout << "Do you wanna give up?: ";
+    //        cin >> choice;
+    //        if (choice == 'Y' || choice == 'y')
+    //        {
+    //            break;
+    //        }
+    //    }*/
+
+    //    for (int j = 0; j < 100; ++j)
+    //    {
+    //        ++iterations;
+    //        std::cout << i << ", " << j << " = " << iterations << endl;
+
+    //        if (iterations % 100 == 0)
+    //        {
+    //           char choice;
+    //           std::cout << "Do you wanna give up?: ";
+    //           cin >> choice;
+    //           if (choice == 'Y' || choice == 'y')
+    //           {
+    //                break;
+    //           }
+    //        }
+    //       
+    //    };
+    //};
+
+    //std::cout << "Total iterations = " << iterations << endl;
+
 
 
     ////// Show Menu
@@ -125,7 +173,16 @@ int main()
     while (!done)*/
     // while (menuCommand == 0);  CREATES INFINITE LOOP
 
-    while (menuCommand == 0)
+    /* do while loop
+    * {
+    *   (statement)
+    * } while (statement);
+    * 
+    * Only post loop tester. Determines if it needs to loop again after running code.
+    
+    */
+
+    do 
     {
         char input;
         cin >> input;
@@ -146,7 +203,8 @@ int main()
 
             default:  std::cout << "ERROR: Bad input" << endl; break;
         }
-    };
+    } while (menuCommand == 0);
+
     cin.ignore();
 
     // int shouldntWork = MenuCommand::MC_AddMovie;
@@ -176,18 +234,21 @@ int main()
     //};
 
     // Get required title
-       while (movie.Title == "")
+
+       do
        {
            std::cout << "Enter a Title: ";
            getline(cin, movie.Title);
 
            if (movie.Title == "")
                std::cout << "ERROR: Title is Required" << endl;
-       };
+       } while (movie.Title == "");
 
-       movie.runLength = -1;
-    while (movie.runLength < 0 || movie.runLength > 1440)
-    { // Get run length, at least 0 minutes
+       // Get run length, at least 0 minutes
+
+      // movie.runLength = -1;
+    do //while (movie.runLength < 0 || movie.runLength > 1440)
+    { 
         std::cout << "Enter run length in minutes: ";
         cin >> movie.runLength;
 
@@ -199,6 +260,9 @@ int main()
             /*std::cout << "Enter run length in minutes: ";
             cin >> movie.runLength;*/
         }
+
+    } while (movie.runLength < 0 || movie.runLength > 1440);
+
 
         //if (movie.runLength <= 0)
         //{
@@ -218,8 +282,6 @@ int main()
 
         //    std::cout << "Enter run length in minutes: ";
         //    cin >> movie.runLength;
-        ///
-    };
 
 
     // Get release year
@@ -392,13 +454,6 @@ int main()
     /* string classicIndicator = movie.isClassic ? "Yes": "No";
        std::cout << "Is it a classic? " << classicIndicator << endl;
      */
-
-
-
-
-
-
-
 
 
 }
