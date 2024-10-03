@@ -81,26 +81,30 @@ int main()
     std::cout << loanAmount << endl;
     std::cout << interestRate << endl;
     std::cout << paymentAmount << endl;
-    double interestPayment = (loanAmount - paymentAmount) * interestRate;
 
     std::cout << left << setw(6) << "Month" << setw(8) << "Balance" << setw(8) << "Payment" << setw(9) << "Interest" << setw(11) << "New Balance" << endl;
     std::cout << setw(42) << setfill('-') << "" << setfill(' ') << endl;
-    std::cout << setw(6) << "1" << setw(8) << loanAmount << setw(8) << (paymentAmount * 0) << setw(9) << (interestPayment * 0) << setw(11) << loanAmount << endl;
+    std::cout << setw(6) << "1" << setw(8) << loanAmount << setw(8) << (paymentAmount * 0) << setw(9) << (interestRate * 0) << setw(11) << loanAmount << endl;
 
     double newBalance = (loanAmount - paymentAmount) + ((loanAmount - paymentAmount) * interestRate);
-  
-    
+    double statementBalance = loanAmount;
+
     for (int monthIndex = 1; monthIndex < 12; ++monthIndex)
     {
+        newBalance = (statementBalance - paymentAmount) + ((statementBalance - paymentAmount) * interestRate);
 
-        /*newBalance = (loanAmount - paymentAmount) + ((loanAmount - paymentAmount) * interestRate); */
+        double interestPayment = (statementBalance - paymentAmount) * interestRate;
         
-
-        /*std::cout << setw(6) << monthIndex + 1 << setw(8) << loanAmount << setw(8) << paymentAmount << setw(9) << interestPayment << setw(11) << newBalance << endl;*/
-        newBalance = (loanAmount - paymentAmount) + ((loanAmount - paymentAmount) * interestRate);
-        double statementBalance = newBalance;
+        cout << fixed << setprecision(2);
         std::cout << setw(6) << monthIndex + 1 << setw(8) << statementBalance << setw(8) << paymentAmount << setw(9) << interestPayment << setw(11) << newBalance << endl;
+        
+        statementBalance = newBalance;
 
+        if (statementBalance < interestPayment)
+        {
+            interestPayment = statementBalance;
+
+        }
     };
 
     /*std::cout << setw(6) << "1" << setw(8) << loanAmount << setw(8) << "payment" << setw(9) << interestRate << setw(11) << "new balance" << endl;
