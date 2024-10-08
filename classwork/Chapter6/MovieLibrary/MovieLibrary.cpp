@@ -1,4 +1,5 @@
-/* Movie Library (Chapter 6 Version)
+/* 
+ * Movie Library (Chapter 6 Version). Modular Programming
  * Jonah Shulske
  * 10/7/24
  */
@@ -8,6 +9,14 @@
 #include <string>
 
 using namespace std;
+
+/* Modular Programming - Breaking up program into multiple different modules / chunks, so that many can work on it at once.
+ * Provides isolation from each section. Black Box - Don't know how or why it works, but it doesn't matter. It's also reuseable.
+ * 
+ * Subroutines - Wrapper term for functions and procedures
+ * Functions - Module that calculates a value. Everything is referred to as a function in C++. Must call to execute.
+ * Procedures - Module that does something
+ */
 
 struct Movie
 {
@@ -34,16 +43,26 @@ struct Movie
 // Integral data type with named values
 enum MenuCommand
 {
-    AddMovie = 1,      
-    EditMovie = 2, 
+    AddMovie = 1,
+    EditMovie = 2,
     DeleteMovie = 3,
-    ViewMovie = 
+    ViewMovie = 4
 };
 
-/
-int main()
-{
 
+/* Function Definition - Defines a function and what it does
+ * Declaration ::= declares the existence of something and what it is. Used by compiler to recognize use of identifier. No effect on runtime. Must be declared before usage. Used in compiler
+ * Definition ::= what it does.  (var defined) (for linker). Used in linker
+ * Function Names are verbs representing actions. If you can't make a verb name for a function, you don't need it as a function. 
+ * Casing: PascalCasing or camelCasing
+ * Every function should have a function headder. 
+*/
+// void - Means there is no type.
+
+
+/// Displays main menu
+void DisplayMenu()
+{
     ////// Show Menu
     std::cout << "Movie Library" << endl;
     std::cout << "---------------" << endl;
@@ -52,9 +71,33 @@ int main()
     std::cout << "D)elete Movie" << endl;
     std::cout << "V)iew Movie" << endl;
     std::cout << "Enter Input: ";
+}
+
+/// Handles menu selection
+void HandleMenu()
+{
+    //HACK: Fix This
+    MenuCommand menuCommand = (MenuCommand)0;
+    switch (menuCommand)
+    {
+
+        case MenuCommand::AddMovie:
+        case MenuCommand::EditMovie:
+        case MenuCommand::DeleteMovie:
+        case MenuCommand::ViewMovie: std::cout << "Not yet implimented" << endl; break;
+
+    }
+}
+
+
+int main()
+{
+    // Function Call ::= id ();
+    ///// Show Menu
+    DisplayMenu();
 
     MenuCommand menuCommand = (MenuCommand)0;
-   
+
     do 
     {
         char input;
@@ -81,7 +124,8 @@ int main()
     cin.ignore();
 
     // Handle Menu Command
-    switch (menuCommand)
+    HandleMenu();
+    /*switch (menuCommand)
     {
 
         case MenuCommand::AddMovie:
@@ -89,7 +133,7 @@ int main()
         case MenuCommand::DeleteMovie:
         case MenuCommand::ViewMovie: std::cout << "Not yet implimented" << endl;
 
-    }
+    }*/
 
 
     ////// Add a new movie
