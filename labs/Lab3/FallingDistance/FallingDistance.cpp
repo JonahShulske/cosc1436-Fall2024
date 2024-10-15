@@ -10,8 +10,29 @@
 
 using namespace std;
 
+//int ReadInt(string message, int minValue, int maxValue)
+//{
+//    int input;
+//    do 
+//    {
+//        std::cout << message;
+//        cin >> input;
+//
+//        if (input < minValue || input > maxValue)
+//        {
+//            std::cout << "ERROR: Value must be between " << minValue << " - " << maxValue << endl;
+//        }
+//
+//    } while (minValue < 1 || maxValue > 60);
+//    return input;
+//}
+
+/// @brief Prompts user for Fall Time
 void FallTimePrompt()
 {
+    /*int fallTime;
+    fallTime = ReadInt("Enter Fall Time in Seconds (1-60): ", 1, 60);*/
+
     int fallTime;
     std::cout << "Enter Fall Time in Seconds (1-60): ";
     cin >> fallTime;
@@ -26,18 +47,20 @@ void FallTimePrompt()
     std::cout << fallTime;
 }
 
+/// @brief Calculates Fall Time in Meters
 void MeterCalculation()     //      (1/2) * gt^2
 {
 
     //double meterCalculation = (0.5 * (9.8 * sqrt(fallTime));
+    double meterCalculation = (0.5 * sqrt(9.8 * fallTime));
     double fallDistanceMeters;
 
-
-
+    cout << meterCalculation;
 
 }
 
 int main()
 {
-    FallTimePrompt();
+    FallTimePrompt()
+    MeterCalculation()
 }
