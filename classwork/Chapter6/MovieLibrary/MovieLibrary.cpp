@@ -1,12 +1,13 @@
 /* 
  * Movie Library (Chapter 6 Version). Modular Programming
  * Jonah Shulske
- * 10/7/24 + 10/9/24
+ * 10/7/24 + 10/9/24 + 10/14/24
  */
 
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "Terminal.h"
 
 using namespace std;
 
@@ -68,36 +69,77 @@ enum MenuCommand
  *   0 left = right
  *  0> left > right
  */
-/* Parameter - Data used inside function
+
+/* Parameter - Data used inside function. Where argument is stored.
  * parameter-list ::= parameter { , parameter }*
  * parameter ::= T [ id ]
  * Argument - Expression passed to function 
+ * 
+ *  Parameter Kind        |             Characteristics                            |    Valid Expressions
+ *   Input/Pass by value  |     Just reads. Writes have no impact on caller        |   Any Expression works.        - Preferred approach, as it's easiest type of function to call. Copies parameter when going from main to other function
+ *   Output               |     Just writes, Caller has no input                   |   Return Type
+ *   Input/Output         |                                                        |
+ */
+
+/* return-string ::= return [E],
+ *
  */
 
 // Global Variables - Don't do this
 MenuCommand g_menuCommand = (MenuCommand)0;
 Movie g_movie;
 
+/* Function Prototypes (Function Fowarding) - Provides provider function declarations, without seeing definition
+ * Don't use unless you really need to.
+ */
+
+
+void AddMovie();
+void EditMovie();
+void DeleteMovie();
+void ViewMovie();
+
+void DisplayMenu();
+void HandleMenu(MenuCommand);
+
+int main()
+{
+    do
+    {
+    // Function Call ::= id ();
+    ///// Show Menu
+        DisplayMenu(g_menuCommand);
+
+        // Handle Menu Command
+        HandleMenu(g_menuCommand);
+    } while (true);
+}
+
+
+
 
 void AddMovie()
 {
-    std::cout << "AddMovie";
+    std::cout << "AddMovie" << endl;
 
     ////// Add a new movie
     // Create a new movie
     Movie movie; // = {0};
 
-    do
+
+    movie.Title = ReadString("Enter a Title: ");
+    /*do
     {
         std::cout << "Enter a Title: ";
         getline(cin, movie.Title);
 
         if (movie.Title == "")
             std::cout << "ERROR: Title is Required" << endl;
-    } while (movie.Title == "");
+    } while (movie.Title == "");*/
 
     // Get run length, at least 0 minutes
-    do
+    movie.runLength = ReadInt("Enter run length in minutes: ", 0, 1440);
+   /* do
     {
         std::cout << "Enter run length in minutes: ";
         cin >> movie.runLength;
@@ -108,10 +150,11 @@ void AddMovie()
             std::cout << "Error: Run length must be between 0 - 1440 minutes" << endl;
         }
 
-    } while (movie.runLength < 0 || movie.runLength > 1440);
+    } while (movie.runLength < 0 || movie.runLength > 1440);*/
 
     // Get release year
-    while (movie.releaseYear < 1900 || movie.releaseYear > 2100)
+    movie.releaseYear = ReadInt("Enter movie release year (1900-2100): ", 1900, 2100);
+    /*while (movie.releaseYear < 1900 || movie.releaseYear > 2100)
     {
         std::cout << "Enter movie release year (1900-2100): ";
         cin >> movie.releaseYear;
@@ -121,12 +164,14 @@ void AddMovie()
             std::cout << "ERROR: Movie release year must range from the years 1900-2100" << endl;
 
         }
-    };
+    };*/
 
     // Get the optional description
-    std::cout << "Enter the optional description: ";
     cin.ignore();
-    getline(cin, movie.Description);
+    movie.Description = ReadString("Enter the optional description: ");
+    /*std::cout << "Enter the optional description: ";
+    cin.ignore();
+    getline(cin, movie.Description);*/
 
     // Get Is Classic
     bool done = false;
@@ -156,15 +201,16 @@ void AddMovie()
     //Get Genre(s)
     for (int genreIndex = 0; genreIndex < 5; ++genreIndex)
     {
-        std::cout << "Enter Optional Genre " << (genreIndex + 1) << ": ";
+        string genre = ReadString("Enter Optional Genre: ");
+        //std::cout << "Enter Optional Genre " << (genreIndex + 1) << ": ";
 
-        string genre;
-        getline(cin, genre);
+        /*string genre;
+        getline(cin, genre);*/
 
         if (genre == "")
         {
             break; // Exists loop unconditionally
-            continue; // Loops only - Stops the current interation and loops again. 
+            //continue; // Loops only - Stops the current interation and loops again. 
             movie.Genre += genre + ", ";
         }
     };
@@ -184,7 +230,7 @@ void DeleteMovie()
     std::cout << "DeleteMovie";
 }
 
-void ViewMovie( Movie movie)
+void ViewMovie(Movie movie)
 {
     std::cout << "ViewMovie";
 
@@ -257,18 +303,4 @@ void HandleMenu(MenuCommand menuCommand)
         case MenuCommand::MC_DeleteMovie: DeleteMovie(); break;
         case MenuCommand::MC_ViewMovie: ViewMovie(g_movie); break;
     }
-}
-
-
-int main()
-{
-    do
-    {
-    // Function Call ::= id ();
-    ///// Show Menu
-        DisplayMenu(g_menuCommand);
-
-        // Handle Menu Command
-        HandleMenu(g_menuCommand);
-    } while (true);
 }
