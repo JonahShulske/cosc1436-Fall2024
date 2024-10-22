@@ -35,23 +35,30 @@ int ReadInt(string message)
     return value;
 }
 
-void FallTimeCalculation(string message)
+double FallTimeCalculation(string message)
 {
-    double fallTime = ReadInt(message);
-    double fallTimeMeters = (0.5 * (9.8 * sqrt(fallTime)));
+    int fallTime = ReadInt(message);
+    double fallTimeMeters = ((0.5 * 9.8) * sqrt(fallTime));
 
     std::cout << fallTime << endl;
     std::cout << fallTimeMeters << endl;
+
+    return fallTime;
+    return fallTimeMeters;
 }
 
 void Table(string message)
 {
+    FallTimeCalculation("Fall: ");
     std::cout << left << setw(7) << "Seconds" << setw(8) << "Distance" << endl;
     std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
-    for (int secondsIndex; secondsIndex < ReadInt(message), ++secondsIndex)
+    for (int secondsIndex = 1; secondsIndex < ReadInt(message), ++secondsIndex;)
     {
-        std::cout << setw(7) << secondsIndex + 1 << 
+        while (secondsIndex < ReadInt(message))
+        {
+            std::cout << setw(7) << secondsIndex + 1 << setw(8) << endl;
 
+        };
     }
 }
 
@@ -91,6 +98,7 @@ void Table(string message)
 int main()
 {
     int value = ReadInt("Enter Fall Time in Seconds (1-60): ", 1, 60);
+    Table();
     /*FallTimePrompt();
     MeterCalculation();
     */
