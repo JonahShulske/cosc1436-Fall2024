@@ -54,16 +54,16 @@ int FallTimePrompt()
 //    return value;
 //}
 
-//double FallTimeCalculation()
-//{
-//    int fallTime;
-//    double fallTimeMeters = ((9.8 * sqrt(fallTime) / 0.5));
-//
-//    std::cout << fallTime << endl;
-//    std::cout << fallTimeMeters << endl;
-//
-//    return fallTimeMeters;
-//}
+double FallTimeCalculation()
+{
+    int fallTime;
+    double fallTimeMeters = ((9.8 * sqrt(fallTime) / 0.5));
+
+    std::cout << fallTime << endl;
+    std::cout << fallTimeMeters << endl;
+
+    return fallTimeMeters;
+}
 
 void MetersOrFeet()
 {
@@ -117,6 +117,7 @@ void MetersOrFeet()
 int main()
 {
     FallTimePrompt();
+    FallTimeCalculation();
     MetersOrFeet();
     /*Table();*/
 }
