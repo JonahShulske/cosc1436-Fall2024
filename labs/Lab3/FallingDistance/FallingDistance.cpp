@@ -26,7 +26,6 @@ int FallTimePrompt()
     };
 
     return fallTime;
-    std::cout << fallTime;
 }
 
 //int ReadInt(string message, int minValue, int maxValue)
@@ -54,36 +53,23 @@ int FallTimePrompt()
 //    return value;
 //}
 
-double FallTimeCalculation()
-{
-    int fallTime;
-    double fallTimeMeters = ((9.8 * sqrt(fallTime) / 0.5));
-
-    std::cout << fallTime << endl;
-    std::cout << fallTimeMeters << endl;
-
-    return fallTimeMeters;
-}
-
-void MetersOrFeet()
+void MetersOrFeet(char measuringUnit)
 {
     bool done = false;
     while (!done)
     {
-        char Meters;
-        char Feet;
+        char measuringUnit;
 
         std::cout << "Do you want to calculate in Meters or Feet? (M/F): ";
-        cin >> Meters;
-        cin >> Feet;
-
-        switch (Meters, Feet)
+        cin >> measuringUnit;
+        
+        switch (measuringUnit)
         {
-            case 'F': Feet = true; done = true; break;
-            case 'f': Feet = true; done = true; break;
+            case 'M':
+            case 'm': measuringUnit = true; done = true; break;
 
-            case 'M': Meters = true; done = true; break;
-            case 'm': Meters = true; done = true; break;
+            case 'F':
+            case 'f': measuringUnit = false; done = true; break;
 
             default:
             {
@@ -91,33 +77,51 @@ void MetersOrFeet()
             }
 
         }
-
     };
-    cin.ignore();
-
 }
 
-//void Table()
-//{
-//    int fallTime;
-//    FallTimeCalculation();
-//    std::cout << left << setw(7) << "Seconds" << setw(8) << "Distance" << endl;
-//    std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
-//    for (int secondsIndex = 1; secondsIndex < fallTime, ++secondsIndex;)
-//    {
-//        while (secondsIndex < fallTime)
-//        {
-//            std::cout << setw(7) << secondsIndex + 1 << setw(8) << endl;
-//
-//        };
-//    }
-//}
+double DistanceMeters()
+{
+    double fallDistanceMeters = ((9.8 * sqrt(1) / 2));
+    /*double fallDistanceFeet = (fallDistanceMeters * 3.28084);*/
 
+    /*std::cout << fallTime << endl;*/
+
+    /*if (done = true)
+        std::cout << fallDistanceMeters << endl;
+    else
+        std::cout << fallDistanceFeet << endl;*/
+    
+    cout << fixed << setprecision(2) << fallDistanceMeters << endl;
+    return fallDistanceMeters;
+   /* return fallDistanceFeet;*/
+}
+
+double DistanceFeet()
+{
+    double fallDistanceMeters = DistanceMeters();
+    double fallDistanceFeet = (fallDistanceMeters * 3.28084);
+
+    cout << fixed << setprecision(2) << fallDistanceFeet << endl;
+
+    return fallDistanceFeet;
+}
 
 int main()
 {
-    FallTimePrompt();
-    FallTimeCalculation();
+    
+    /*ReadInt("Enter Fall Time in Seconds (1-60): ", 1, 60);*/
+    int fallTime = FallTimePrompt();
     MetersOrFeet();
-    /*Table();*/
+    DistanceMeters();
+    DistanceFeet();
+    
+    std::cout << left << setw(7) << "Seconds " << setw(8) << " Distance" << endl;
+    std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
+    for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
+    {
+            std::cout << setw(9) << secondsIndex + 1 << setw(8) << endl;
+    }
+
+   /* Table();*/
 }
