@@ -37,28 +37,18 @@ int FallTimePrompt()
     return fallTime;
 }
 
-double DistanceMeters()
+double DistanceMeters(int seconds)
 {
-    double fallDistanceMeters = (9.8 * pow(1, 2) / 2);
+    
+    double fallDistanceMeters = (9.8 * pow(seconds, 2) / 2);
 
-        /*(9.8 * pow(1, 2)) / 2);*/
-    /*double fallDistanceFeet = (fallDistanceMeters * 3.28084);*/
-
-    /*std::cout << fallTime << endl;*/
-
-    /*if (done = true)
-        std::cout << fallDistanceMeters << endl;
-    else
-        std::cout << fallDistanceFeet << endl;*/
-
-   /* cout << fixed << setprecision(2) << fallDistanceMeters << endl;*/
     return fallDistanceMeters;
    /* return fallDistanceFeet;*/
 }
 
-double DistanceFeet()
+double DistanceFeet(int seconds)
 {
-    double fallDistanceMeters = DistanceMeters();
+    double fallDistanceMeters = DistanceMeters(seconds);
     double fallDistanceFeet = (fallDistanceMeters * 3.28084);
 
     cout << fixed << setprecision(2) << fallDistanceFeet << endl;
@@ -125,26 +115,26 @@ void DisplayTable()
 {
     int fallTime = FallTimePrompt();
     bool metersOrFeet = MetersOrFeet();
-    double fallDistanceMeters = DistanceMeters();
-    double fallDistanceFeet = DistanceFeet();
+   /* double fallDistanceMeters = DistanceMeters();
+    double fallDistanceFeet = DistanceFeet();*/
 
     std::cout << left << setw(7) << "Seconds " << setw(8) << " Distance" << endl;
     std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
 
     if (metersOrFeet == true)
     {
-        std::cout << setw(9) << "1" << setw(8) << fallDistanceMeters << endl;
+        /*std::cout << setw(9) << "1" << setw(8) << fallDistanceMeters << endl;*/
 
         for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
         {
-            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << fallDistanceMeters << endl;
+            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << DistanceMeters(secondsIndex) << endl;
 
         }
     } else if (metersOrFeet == false)
     {
         for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
         {
-            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << fallDistanceFeet << endl;
+            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << DistanceFeet(secondsIndex) << endl;
         }
     }
 
