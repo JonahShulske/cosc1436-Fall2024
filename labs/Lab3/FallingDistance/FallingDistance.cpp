@@ -39,8 +39,9 @@ int FallTimePrompt()
 
 double DistanceMeters()
 {
-    int fallTime;
-    double fallDistanceMeters = ((9.8 * sqrt(fallTime) / 2));
+    double fallDistanceMeters = (9.8 * pow(1, 2) / 2);
+
+        /*(9.8 * pow(1, 2)) / 2);*/
     /*double fallDistanceFeet = (fallDistanceMeters * 3.28084);*/
 
     /*std::cout << fallTime << endl;*/
@@ -50,7 +51,7 @@ double DistanceMeters()
     else
         std::cout << fallDistanceFeet << endl;*/
 
-    cout << fixed << setprecision(2) << fallDistanceMeters << endl;
+   /* cout << fixed << setprecision(2) << fallDistanceMeters << endl;*/
     return fallDistanceMeters;
    /* return fallDistanceFeet;*/
 }
@@ -90,14 +91,14 @@ double DistanceFeet()
 //    return value;
 //}
 
-char MetersOrFeet()
+bool MetersOrFeet()
 {
     char measuringUnit;
     bool done = false;
     while (!done)
     {
         char measuringUnit;
-
+        
         std::cout << "Do you want to calculate in Meters or Feet? (M/F): ";
         cin >> measuringUnit;
         
@@ -120,33 +121,44 @@ char MetersOrFeet()
 
 }
 
+void DisplayTable()
+{
+    int fallTime = FallTimePrompt();
+    bool metersOrFeet = MetersOrFeet();
+    double fallDistanceMeters = DistanceMeters();
+    double fallDistanceFeet = DistanceFeet();
+
+    std::cout << left << setw(7) << "Seconds " << setw(8) << " Distance" << endl;
+    std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
+
+    if (metersOrFeet == true)
+    {
+        std::cout << setw(9) << "1" << setw(8) << fallDistanceMeters << endl;
+
+        for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
+        {
+            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << fallDistanceMeters << endl;
+
+        }
+    } else if (metersOrFeet == false)
+    {
+        for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
+        {
+            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fixed << setprecision(2) << fallDistanceFeet << endl;
+        }
+    }
+
+
+}
 
 
 int main()
 {
-    
-    //int fallTime = ReadInt("Enter Fall Time in Seconds (1-60): ", 1, 60);
-    int fallTime = FallTimePrompt();
-    char measuringUnit = MetersOrFeet();
-    double fallDistanceMeters = DistanceMeters();
-    double fallDistanceFeet = DistanceFeet();
-    
-    std::cout << left << setw(7) << "Seconds " << setw(8) << " Distance" << endl;
-    std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
+    DisplayTable();
 
-    /*if (measuringUnit == 'M' || measuringUnit == 'm')*/
-    //{
-        for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
-        {
-            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fallDistanceMeters << endl;
-        }
-    //}
-   /* else if (measuringUnit == 'F' || measuringUnit == 'f')
-    {
-        for (int secondsIndex = 0; secondsIndex < fallTime; ++secondsIndex)
-        {
-            std::cout << setw(9) << secondsIndex + 1 << setw(8) << fallDistanceFeet << endl;
-        }
-    }*/
+    //int fallTime = ReadInt("Enter Fall Time in Seconds (1-60): ", 1, 60);
+    
+    
+    
    /* Table();*/
 }
