@@ -87,16 +87,16 @@ void DisplayTable()
     bool metersOrFeet = MetersOrFeet();
 
     std::cout << left << setw(7) << "Seconds " << setw(8) << " Distance" << endl;
-    std::cout << left << setw(20) << setfill('=') << "" << setfill(' ') << endl;
+    std::cout << left << setw(21) << setfill('=') << "" << setfill(' ') << endl;
 
-    if (metersOrFeet == true)
+    if (metersOrFeet == true)      //Table output for Meters
     {
         for (int secondsIndex = 1; secondsIndex <= fallTime; ++secondsIndex)
         {
             std::cout << setw(9) << secondsIndex << setw(2) << fixed << setprecision(2) << DistanceMeters(secondsIndex) << " m" << endl;
 
         }
-    } else if (metersOrFeet == false)
+    } else if (metersOrFeet == false)       //Table output for Feet
     {
         for (int secondsIndex = 1; secondsIndex <= fallTime; ++secondsIndex)
         {
