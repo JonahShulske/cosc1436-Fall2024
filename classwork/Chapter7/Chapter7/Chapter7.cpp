@@ -1,5 +1,5 @@
 /* Chapter 7 - Pass By Reference
- * 10/23/24 + 10/28/24 + 10/30/24
+ * 10/23/24 + 10/28/24 + 10/30/24 + 11/4/24
  */
 
 #include <iostream>
@@ -222,6 +222,71 @@ void UseArrayDemo()
     CopyArray(array3, 20, array2, 20);
 }
 
+void DisplayArray(int values[], int size, int valueWidth, int maxCellsPerRow)
+{
+    for (int index = 0; index < size; ++index)
+    {
+        std::cout << setw(valueWidth) << values[index] << " ";
+
+       /* if (index > 0 && index % maxCellsPerRow == 0)
+            cout << endl;*/
+
+        if ((index + 1) % maxCellsPerRow == 0)
+            cout << endl;
+    }
+
+    cout << right << endl;
+
+}
+
+/* Multi - D table passed like single - D tables
+ * All dimensions other than rows must be fixed at compile time
+ * Only single dimensional arrays exist in C+, but an array can be inside another array. Arrays of Arrays are most common style seen in most languages, known as "Rectangular Arrays".
+ * Jagged Arrays - Rows are still fixed, but each element is an array, and can be any size needed. Alternative method used in some languages. Very very difficult. C++ only supports it for strings. 
+ */
+void DisplayTable(int values[][10], int size)
+{
+    for (int row = 0; row < size; ++row)
+        DisplayArray(values[row], 10, 5, 10);
+        /*for (int column = 0; column < 10; ++column)*/
+
+}
+void TableDemo()
+{
+    
+    // Tables are a 2D Array
+
+    /*int values[] = {1, 2, 3, 4, 5};
+    DisplayArray(values, 5, 10, 3);*/
+
+   
+    // [rows][columns] - Compile time size for all dimensions
+    int multiplicationTable[5][10] = {{1, 2, 3, 4, 5,},
+                                     {2, 4, 6, 8, 10}};
+   
+
+     /*Initialize variables*/
+
+    // Column major ordering - Colums are enumerated, then rows. Destroys performance if this isn't the way your language compiles rectangular arrays. Don't do this
+    /*for (int column = 0; column < 5; ++column)
+        for (int row = 0; row < 10; ++row)
+            multiplicationTable[row][column] = ((row + 1) * (column + 1));*/
+
+    // Row major ordering - Rows are enumerated, then columns.
+    for (int row = 0; row < 5; ++row)
+        for (int column = 0; column < 10; ++column)
+            multiplicationTable[row][column] = ((row + 1) * (column + 1));
+
+    DisplayTable(multiplicationTable, 5);
+
+    ////Display Table
+    //for (int row = 0; row < 5; ++row)
+    //{
+    //    for (int column = 0; column < 10; ++column)
+    //        std::cout << setw(5) << multiplicationTable[row][column];
+    //    cout << endl;
+    //};
+}
 
   
 
@@ -230,8 +295,8 @@ int main()
     double gradeAverages[100];
    /* GradeArrayDemo();
     InitArrayDemo();*/
-    UseArrayDemo();
-    
+   /* UseArrayDemo();*/
+    TableDemo();
 
 
 
