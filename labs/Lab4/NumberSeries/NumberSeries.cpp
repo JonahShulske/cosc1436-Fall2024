@@ -46,6 +46,31 @@ void SeriesArray()
     };
 }
 
+//int LargestNumber()
+//{
+//
+//}
+//
+//int MeanNumber()
+//{
+//
+//}
+//
+//int SmallestNumber()
+//{
+//
+//}
+//
+//int InsertNumber()
+//{
+//
+//}
+//
+//int ViewNumbers()
+//{
+//
+//}
+
 //void DisplayMenu(MenuCommand menuCommand)
 //{
 //    std::cout << "Main Menu" << endl;
@@ -86,14 +111,19 @@ void SeriesArray()
 //
 //            case 'Q':
 //            case 'q': menuCommand = MenuCommand::MC_Quit; break;
+//            
+//            default: std::cout << "ERROR: Bad Input" << endl; break;
 //        };
 //    } while (menuCommand == 0);
 //
 //    cin.ignore();
 //}
 
+
+
 int main()
 {
+    MenuCommand menuCommand;
     SeriesArray();
-    /*DisplayMenu();*/
+    DisplayMenu(menuCommand);
 }
