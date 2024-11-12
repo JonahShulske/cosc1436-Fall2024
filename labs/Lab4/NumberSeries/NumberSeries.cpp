@@ -21,9 +21,10 @@ enum MenuCommand
     MC_Quit,
 };
 
-void SeriesArray()
+
+int SeriesArray()
 {
-    const int maxNumberAmount = 100;
+    const int maxNumberAmount = 101;
     int numberSeriesArray[maxNumberAmount];
 
     int count = 0;
@@ -44,6 +45,7 @@ void SeriesArray()
 
         ++count;
     };
+    return maxNumberAmount;
 }
 
 //int LargestNumber()
@@ -70,6 +72,14 @@ void SeriesArray()
 //{
 //
 //}
+
+int* createArray(int size) {
+    int* arr = new int[size];
+    for (int i = 0; i < size; ++i) {
+        arr[i] = i;
+    }
+    return arr;
+}
 
 //void DisplayMenu(MenuCommand menuCommand)
 //{
@@ -123,7 +133,8 @@ void SeriesArray()
 
 int main()
 {
-    MenuCommand menuCommand;
+    
+    /*MenuCommand menuCommand;*/
     SeriesArray();
-    DisplayMenu(menuCommand);
+    /*DisplayMenu(menuCommand);*/
 }
