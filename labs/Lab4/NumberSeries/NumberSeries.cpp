@@ -57,39 +57,39 @@ enum MenuCommand
 //    };
 //}
 
-void SeriesArray(int value[], int size)
+void SeriesArray(int *value, int *size)
 {
-    const int maxNumberAmount = 101;
-    int numberSeriesArray[maxNumberAmount];
+    int maxSize= 100;
 
-    int count = 0;
-    for (int index = 0; index < maxNumberAmount; ++index)
+    int* numberArray = new int[maxSize];
+
+    for (int index = 0; index < maxSize; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> numberSeriesArray[index];
+        cin >> numberArray[index];
 
-        while (numberSeriesArray[index] < 0)
+        while (numberArray[index] < 0)
         {
             std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
             std::cout << "Enter a value: ";
-            cin >> numberSeriesArray[index];
+            cin >> numberArray[index];
         }
 
-        if (numberSeriesArray[index] <= 0)
+        if (numberArray[index] == 0)
             break;
-
-        ++count;
     };
 }
 
 //void SeriesArray()
 //{
-//    const int maxNumberAmount = 101;
-//    int numberSeriesArray[maxNumberAmount];
+//    const int maxSize = 100;
+//    NumberSeries* numberSeriesArray[maxSize] = {0};
 //
 //    int count = 0;
-//    for (int index = 0; index < maxNumberAmount; ++index)
+//    for (int index = 0; index < maxSize; ++index)
 //    {
+//        int numberSeries;
+//
 //        std::cout << "Enter a value: ";
 //        cin >> numberSeriesArray[index];
 //
@@ -100,17 +100,21 @@ void SeriesArray(int value[], int size)
 //            cin >> numberSeriesArray[index];
 //        }
 //
+//        numberSeriesArray[index] = numberSeries;
+//
 //        if (numberSeriesArray[index] <= 0)
 //            break;
 //
 //        ++count;
 //    };
+//    for (int index = 0; index < maxSize; ++index)
+//        cout << numberSeriesArray[index] << endl;
 //}
 
-//int LargestNumber()
-//{
-//
-//}
+int LargestNumber()
+{
+    int largestNumber;
+}
 //
 //int MeanNumber()
 //{
@@ -185,6 +189,6 @@ void SeriesArray(int value[], int size)
 int main()
 {
     /*MenuCommand menuCommand;*/
-    SeriesArray();
+    /*SeriesArray();*/
     /*DisplayMenu(menuCommand);*/
 }
