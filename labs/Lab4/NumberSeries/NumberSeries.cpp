@@ -21,32 +21,55 @@ enum MenuCommand
     MC_Quit,
 };
 
-
-int SeriesArray()
+void* SeriesArray(int value[], int size)
 {
-    const int maxNumberAmount = 101;
-    int numberSeriesArray[maxNumberAmount];
-
+    value[size];
+    
     int count = 0;
-    for (int index = 0; index < maxNumberAmount; ++index)
+    for (int index = 0; index < size; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> numberSeriesArray[index];
+        cin >> value[index];
 
-        while (numberSeriesArray[index] < 0)
+        while (value[index] < 0)
         {
             std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
             std::cout << "Enter a value: ";
-            cin >> numberSeriesArray[index];
+            cin >> value[index];
         }
 
-        if (numberSeriesArray[index] <= 0)
+        if (value[index] <= 0)
             break;
 
         ++count;
     };
-    return maxNumberAmount;
+    return value;
 }
+
+//void SeriesArray()
+//{
+//    const int maxNumberAmount = 101;
+//    int numberSeriesArray[maxNumberAmount];
+//
+//    int count = 0;
+//    for (int index = 0; index < maxNumberAmount; ++index)
+//    {
+//        std::cout << "Enter a value: ";
+//        cin >> numberSeriesArray[index];
+//
+//        while (numberSeriesArray[index] < 0)
+//        {
+//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
+//            std::cout << "Enter a value: ";
+//            cin >> numberSeriesArray[index];
+//        }
+//
+//        if (numberSeriesArray[index] <= 0)
+//            break;
+//
+//        ++count;
+//    };
+//}
 
 //int LargestNumber()
 //{
@@ -72,14 +95,6 @@ int SeriesArray()
 //{
 //
 //}
-
-int* createArray(int size) {
-    int* arr = new int[size];
-    for (int i = 0; i < size; ++i) {
-        arr[i] = i;
-    }
-    return arr;
-}
 
 //void DisplayMenu(MenuCommand menuCommand)
 //{
@@ -133,8 +148,9 @@ int* createArray(int size) {
 
 int main()
 {
-    
+    int *value, size;
+    int *numberSeriesArray = value;
     /*MenuCommand menuCommand;*/
-    SeriesArray();
+    SeriesArray(value, size);
     /*DisplayMenu(menuCommand);*/
 }
