@@ -10,6 +10,11 @@
 
 using namespace std;
 
+struct NumberSeries
+{
+    int inputValues;
+};
+
 enum MenuCommand
 {
     MC_Add = 1,
@@ -21,29 +26,60 @@ enum MenuCommand
     MC_Quit,
 };
 
-void* SeriesArray(int value[], int size)
+//void SeriesArray()
+//{
+//    const int maxSize = 100;
+//    NumberSeries* inputValue[maxSize];
+//
+//    for (int index = 0; index < maxSize; ++index)
+//    {
+//        int value;
+//        std::cout << "Enter a value: ";
+//        cin >> value;
+//       /* cin >> inputValue[index];*/
+//
+//        while (value < 0)
+//        {
+//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
+//            std::cout << "Enter a value: ";
+//            cin >> value;
+//            /*cin >> inputValue[index];*/
+//        };
+//
+//        if (value == 0)
+//            break;
+//        /*if (inputValue[index] == 0)
+//            break;*/
+//
+//        NumberSeries* valueInput = new NumberSeries;
+//        valueInput->inputValues = inputValue;
+//        inputValue[index] = valueInput;
+//    };
+//}
+
+void SeriesArray(int value[], int size)
 {
-    value[size];
-    
+    const int maxNumberAmount = 101;
+    int numberSeriesArray[maxNumberAmount];
+
     int count = 0;
-    for (int index = 0; index < size; ++index)
+    for (int index = 0; index < maxNumberAmount; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> value[index];
+        cin >> numberSeriesArray[index];
 
-        while (value[index] < 0)
+        while (numberSeriesArray[index] < 0)
         {
             std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
             std::cout << "Enter a value: ";
-            cin >> value[index];
+            cin >> numberSeriesArray[index];
         }
 
-        if (value[index] <= 0)
+        if (numberSeriesArray[index] <= 0)
             break;
 
         ++count;
     };
-    return value;
 }
 
 //void SeriesArray()
@@ -148,9 +184,7 @@ void* SeriesArray(int value[], int size)
 
 int main()
 {
-    int *value, size;
-    int *numberSeriesArray = value;
     /*MenuCommand menuCommand;*/
-    SeriesArray(value, size);
+    SeriesArray();
     /*DisplayMenu(menuCommand);*/
 }
