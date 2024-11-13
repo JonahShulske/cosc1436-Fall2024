@@ -10,11 +10,6 @@
 
 using namespace std;
 
-struct NumberSeries
-{
-    int inputValues;
-};
-
 enum MenuCommand
 {
     MC_Add = 1,
@@ -26,94 +21,35 @@ enum MenuCommand
     MC_Quit,
 };
 
-//void SeriesArray()
-//{
-//    const int maxSize = 100;
-//    NumberSeries* inputValue[maxSize];
-//
-//    for (int index = 0; index < maxSize; ++index)
-//    {
-//        int value;
-//        std::cout << "Enter a value: ";
-//        cin >> value;
-//       /* cin >> inputValue[index];*/
-//
-//        while (value < 0)
-//        {
-//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
-//            std::cout << "Enter a value: ";
-//            cin >> value;
-//            /*cin >> inputValue[index];*/
-//        };
-//
-//        if (value == 0)
-//            break;
-//        /*if (inputValue[index] == 0)
-//            break;*/
-//
-//        NumberSeries* valueInput = new NumberSeries;
-//        valueInput->inputValues = inputValue;
-//        inputValue[index] = valueInput;
-//    };
-//}
 
-void SeriesArray(int *value, int *size)
+void SeriesArray(int values[], int maxSize)
 {
-    int maxSize= 100;
-
-    int* numberArray = new int[maxSize];
-
     for (int index = 0; index < maxSize; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> numberArray[index];
+        cin >> values[index];
 
-        while (numberArray[index] < 0)
+        while (values[index] < 0)
         {
             std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
             std::cout << "Enter a value: ";
-            cin >> numberArray[index];
+            cin >> values[index];
         }
 
-        if (numberArray[index] == 0)
+        if (values[index] <= 0)
             break;
-    };
+    }
 }
-
-//void SeriesArray()
-//{
-//    const int maxSize = 100;
-//    NumberSeries* numberSeriesArray[maxSize] = {0};
-//
-//    int count = 0;
-//    for (int index = 0; index < maxSize; ++index)
-//    {
-//        int numberSeries;
-//
-//        std::cout << "Enter a value: ";
-//        cin >> numberSeriesArray[index];
-//
-//        while (numberSeriesArray[index] < 0)
-//        {
-//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
-//            std::cout << "Enter a value: ";
-//            cin >> numberSeriesArray[index];
-//        }
-//
-//        numberSeriesArray[index] = numberSeries;
-//
-//        if (numberSeriesArray[index] <= 0)
-//            break;
-//
-//        ++count;
-//    };
-//    for (int index = 0; index < maxSize; ++index)
-//        cout << numberSeriesArray[index] << endl;
-//}
 
 int LargestNumber()
 {
-    int largestNumber;
+    int numberSeries[100];
+    
+    int largestNumber = floor(numberSeries[100]);
+
+    cout << largestNumber;
+
+    return largestNumber;
 }
 //
 //int MeanNumber()
@@ -188,7 +124,9 @@ int LargestNumber()
 
 int main()
 {
+    int numberSeries[100] = {0};
     /*MenuCommand menuCommand;*/
-    /*SeriesArray();*/
+    SeriesArray(numberSeries, 100);
+    LargestNumber();
     /*DisplayMenu(menuCommand);*/
 }
