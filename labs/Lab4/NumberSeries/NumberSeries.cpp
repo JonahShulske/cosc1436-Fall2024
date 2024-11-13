@@ -22,34 +22,64 @@ enum MenuCommand
 };
 
 
-void SeriesArray(int values[], int maxSize)
+void InitializeArray(int values[], int size, int initialValue)
 {
-    for (int index = 0; index < maxSize; ++index)
-    {
-        std::cout << "Enter a value: ";
-        cin >> values[index];
-
-        while (values[index] < 0)
-        {
-            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
-            std::cout << "Enter a value: ";
-            cin >> values[index];
-        }
-
-        if (values[index] <= 0)
-            break;
-    }
+    for (int index = 0; index < size; ++index)
+        values[index] = initialValue;
 }
 
-int LargestNumber()
+void SeriesArray()
+{
+    int numberSeries[100] = {0};
+    int initialValue;
+
+    InitializeArray(numberSeries, 100, 0);
+
+    for (int index = 0; index < 100; ++index)
+    {
+        std::cout << "Enter a value: ";
+        numberSeries[100] = initialValue;
+
+        while (numberSeries[index] < 0)
+        {
+            std::cout << "Error: Values must be greater than or equal to 0" << endl;
+            std::cout << "Enter a value: ";
+            numberSeries[initialValue];
+        };
+
+        if (numberSeries[index] == 0)
+            break;
+    }
+
+}
+
+//void SeriesArray(int values[], int maxSize, int initialValue)
+//{
+//    for (int index = 0; index < maxSize; ++index)
+//    {
+//        std::cout << "Enter a value: ";
+//        values[index] = initialValue;
+//
+//        while (values[index] < 0)
+//        {
+//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
+//            std::cout << "Enter a value: ";
+//            values[index] = initialValue;
+//        }
+//
+//        if (values[index] == 0)
+//            break;
+//    }
+//}
+
+void LargestNumber()
 {
     int numberSeries[100];
-    
-    int largestNumber = floor(numberSeries[100]);
 
-    cout << largestNumber;
+    InitializeArray(numberSeries, 100, 0);
 
-    return largestNumber;
+    for (int index = 0; index < 100; ++index)
+        std::cout << numberSeries[100] << " ";
 }
 //
 //int MeanNumber()
@@ -124,9 +154,10 @@ int LargestNumber()
 
 int main()
 {
-    int numberSeries[100] = {0};
+    
     /*MenuCommand menuCommand;*/
-    SeriesArray(numberSeries, 100);
+    InitializeArray(numberSeries, 101, 0);
+    SeriesArray();
     LargestNumber();
     /*DisplayMenu(menuCommand);*/
 }
