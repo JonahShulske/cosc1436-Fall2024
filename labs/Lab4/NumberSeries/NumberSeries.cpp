@@ -12,7 +12,7 @@ using namespace std;
 
 enum MenuCommand
 {
-    MC_Add = 1,
+    MC_Add,
     MC_Largest,
     MC_Mean,
     MC_Smallest,
@@ -56,57 +56,56 @@ void SeriesArray()
     cout << endl;
 }
 
-//void SeriesArray(int values[], int maxSize, int initialValue)
+void LargestNumber()
+{
+
+    cout << "TEST";
+    /*int numberSeries[100];
+
+    InitializeArray(numberSeries, 100, 0);
+
+    for (int index = 0; index < 100; ++index)
+        std::cout << numberSeries[index] << " ";*/
+}
+//
+//void MeanNumber()
 //{
-//    for (int index = 0; index < maxSize; ++index)
-//    {
-//        std::cout << "Enter a value: ";
-//        values[index] = initialValue;
 //
-//        while (values[index] < 0)
-//        {
-//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
-//            std::cout << "Enter a value: ";
-//            values[index] = initialValue;
-//        }
+//}
 //
-//        if (values[index] == 0)
-//            break;
-//    }
+//void SmallestNumber()
+//{
+//
+//}
+//
+//void InsertNumber()
+//{
+//
+//}
+//
+//void ViewNumbers()
+//{
+//
 //}
 
-//void LargestNumber()
-//{
-//    int numberSeries[100];
-//
-//    InitializeArray(numberSeries, 100, 0);
-//
-//    for (int index = 0; index < 100; ++index)
-//        std::cout << numberSeries[index] << " ";
-//}
-//
-//int MeanNumber()
-//{
-//
-//}
-//
-//int SmallestNumber()
-//{
-//
-//}
-//
-//int InsertNumber()
-//{
-//
-//}
-//
-//int ViewNumbers()
-//{
-//
-//}
+void HandleMovie(MenuCommand menuCommand)
+{
+    switch (menuCommand)
+    {
+        case MenuCommand::MC_Largest: LargestNumber(); break;
+        /*case MenuCommand::MC_Add: Add(); break;
+        case MenuCommand::MC_Mean: MeanNumber(); break;
+        case MenuCommand::MC_Smallest: SmallestNumber(); break;
+        case MenuCommand::MC_Insert: InsertNumber(); break;
+        case MenuCommand::MC_View: ViewNumber(); break;
+        case MenuCommand::MC_Quit: QuitFunction(); break;*/
+    };
+}
+
 
 void DisplayMenu(MenuCommand menuCommand)
 {
+    char input;
     std::cout << "Main Menu" << endl;
     std::cout << left << setw(15) << setfill('-') << "" << setfill(' ') << endl;
     std::cout << "A) dd " << endl;
@@ -117,12 +116,10 @@ void DisplayMenu(MenuCommand menuCommand)
     std::cout << "V) iew " << endl;
     std::cout << "Q) uit " << endl;
     std::cout << "Enter Menu Choice: ";
+    cin >> input;
 
     do
     {
-        char input;
-        cin >> input;
-
         switch (input)
         {
             case 'A':
@@ -153,19 +150,27 @@ void DisplayMenu(MenuCommand menuCommand)
     cin.ignore();
 };
 
-//void HandleMovie(MenuCommand menuCommand)
+
+
+//void SeriesArray(int values[], int maxSize, int initialValue)
 //{
-//    switch (menuCommand)
+//    for (int index = 0; index < maxSize; ++index)
 //    {
-//        case MenuCommand::MC_Largest: LargestNumber(); break;
-//        case MenuCommand::MC_Add: Add(); break;
-//        case MenuCommand::MC_Mean: MeanNumber(); break;
-//        case MenuCommand::MC_Smallest: SmallestNumber(); break;
-//        case MenuCommand::MC_Insert: InsertNumber(); break;
-//        case MenuCommand::MC_View: ViewNumber(); break;
-//        case MenuCommand::MC_Quit: QuitProgram(); break;
+//        std::cout << "Enter a value: ";
+//        values[index] = initialValue;
+//
+//        while (values[index] < 0)
+//        {
+//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
+//            std::cout << "Enter a value: ";
+//            values[index] = initialValue;
+//        }
+//
+//        if (values[index] == 0)
+//            break;
 //    }
 //}
+
 
 
 
@@ -177,5 +182,5 @@ int main()
     SeriesArray();
    /* LargestNumber();*/
     DisplayMenu(menuCommand);
-    /*HandleMovie(menuCommand);*/
+    HandleMovie(menuCommand);
 }
