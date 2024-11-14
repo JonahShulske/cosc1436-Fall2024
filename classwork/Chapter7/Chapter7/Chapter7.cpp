@@ -166,7 +166,7 @@ int CopyArray(int left[], int leftSize, int right[], int rightSize)
     return size;
 }
 
-// Arrays cannot be a return type from function.        Size DOES matter :(
+// Arrays cannot be a return type from function.
 void InitializeArray(int values[], int size, int initialValue)
 {
     for (int index = 0; index < size; ++index)
