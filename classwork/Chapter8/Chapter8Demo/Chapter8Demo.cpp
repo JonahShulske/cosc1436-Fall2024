@@ -25,6 +25,34 @@ using namespace std;
  * 
  */
 
+/*          ptr to T        |             ptr(p=v           |           Deret(*p=v)
+ *             T*                           RW                              RW
+ *           T const *                      RW                              R
+ *           const T*                       RW                              R
+ *           T * const                      R
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+/* Linked List - Series of value nodes. Replicates an array. Needs to be allocated 
+ * struct Node
+ * {
+ *   int value;
+ *   Node* Next;
+ * }
+ * 
+ * Node* root = nullptr;
+ * root = new node = > 5;
+ * pNode = new node = > 8; 
+ * 
+ * root -> Next = current -> next; Deletes current
+ */
+
+
+
 /* 1 byte = 8 bits = 256 | 1 kilobyte = 1,024 bytes |  1 megabyte = 1,024 kb 
  * 1 gigabyte = 1,024 mb | 1 terabyte = 1,024 gb    |  1 penabyte = 1,024 tb
  * 1 exabyte  =  1,024 pb = Largest possible data size currently
@@ -291,14 +319,120 @@ void PassByRefVsPointerDemo()
     //InitializeEmployeeByPointer(nullptr); // Will crash program
 }
 
+Employee* CreateEmployee()
+{
+    Employee* ptrEmployee = new Employee();
+
+    return ptrEmployee;
+}
+
+int* FindElement(int values[], int size, int desiredValue)
+{
+    // Return address of matching element, if any
+    for (int index = 0; index < size; ++index)
+    {
+        if (values[index] == desiredValue)
+            return &values[index];
+    };
+
+    return nullptr;
+}
+
+double g_SomeVariable = 9.18175;
+
+double* GetConstant()
+{
+    return &g_SomeVariable;
+}
+// Never do something like this. Can crash program or corrupt memory
+//double* DontDoThis()
+//{
+//    double someValue = 1.2914;
+//
+//    return &someValue;
+//}
+
+void PointerReturnDemo()
+{
+    /* Pointer as return type. New instance from function
+     * RAII - Resource Acquisition is Initialization. If a funcition returns a pointer to you, you are responsible for its lifetime. 
+    */
+    Employee* pNewEmployee = CreateEmployee();
+    delete pNewEmployee;
+
+    // Pointer is to memory that the caller owns
+    int values[100] = {0};
+    values[50] = 20;
+    int* pMatch = FindElement(values, 100, 20);
+
+    // Pointer to global object
+    double* pConstant = GetConstant();
+
+    //// Don't do this
+    //DontDoThis();
+}
+
+// Message is a refrerence to a constant string
+// Reference for perf reasons
+// const string& message
+int ReadInt(string const& message) // For backwards compatibility reasons, const can follow or preceed a type, and it'll work the same.
+{
+    // Constant, can't modify
+    // message = "Bruh; Will not work
+
+    std::cout << message;
+
+    int value;
+    cin >> value;
+
+    return value;
+}
+
+void ConstantPointersDemo()
+{
+    /*string message = "Enter a number: ";*/
+    int value = ReadInt("Enter a number: ");
+
+    // non-const vs const
+    int nonConstValue = 10;
+    const int constValue = 20;
+
+    // non-const are readable/writeable
+    nonConstValue = 20;
+
+    // const are read only
+    /*constValue = 30;*/
+
+    // Pointer can be dereferenced to read/write
+    int* pNonConst = &nonConstValue;
+    *pNonConst = 40;
+
+    //// Cannot assign a const int pointer to a non-const int pointer. Can add const to someting, cannot take const from something
+    //*pNonConst = &constValue;
+    //*pNonConst = 50;
+
+    // non-const to const is allowed. Can add const to someting, cannot take const from something
+    int const* pConst = &constValue;
+    pConst = &nonConstValue;
+
+    nonConstValue = (int)45.6; // C style cast
+    nonConstValue = static_cast<int>(45.6); // C++ cast
+
+    // const_cast<T> casts T to eithe const T or T depending on what it is
+    pConst = const_cast<int*>(&nonConstValue);
+    pNonConst = const_cast<int*>(&constValue);
+    *pNonConst = 50;
+}
+
 int main()
 {
     /*ArrayPointerDemo();*/
     /*StackDemo();
     EmptyDemo();*/
     /*DynamicMemoryDemo();*/
-    NewArrayDemo();
-    NewArrayDemo2();
+    /*NewArrayDemo();
+    NewArrayDemo2();*/
+    ConstantPointersDemo();
     
     /*while (true)
     {
