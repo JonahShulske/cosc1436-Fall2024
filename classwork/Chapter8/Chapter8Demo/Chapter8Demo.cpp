@@ -27,14 +27,11 @@ using namespace std;
 
 /*          ptr to T        |             ptr(p=v           |           Deret(*p=v)
  *             T*                           RW                              RW
- *           T const *                      RW                              R
- *           const T*                       RW                              R
- *           T * const                      R
- * 
- * 
- * 
- * 
- * 
+ *           T const *                      RW                              RW
+ *           const T*                       RW                              RW
+ *           T * const                      R                               R
+ *         T const * const                  R                               R
+ *         const T * const                  R                               R
  */
 
 /* Linked List - Series of value nodes. Replicates an array. Needs to be allocated 
@@ -49,6 +46,27 @@ using namespace std;
  * pNode = new node = > 8; 
  * 
  * root -> Next = current -> next; Deletes current
+ */
+
+/* Foo (int* ptr) (O x 100)
+{
+    Foo &Value;         (104)
+
+    ptrH;
+    ptr = ptr + 1;
+
+}*/
+
+/* 
+ * arr[4] -> ar[I];
+ * *(arr + 4) *(arr + I) ;
+ */
+
+/*
+ * int arr[10] = {4, 5, 6}
+ * int index = 1
+ * ++(arr[index]),
+ * arr [index++] = 5     If inside bracket, it's an int, manipulating whatever's inside. If outside brackets, manipulating whatever's outside.
  */
 
 
