@@ -10,6 +10,15 @@
 
 using namespace std;
 
+enum MenuCommand
+{
+    MC_List,
+    MC_Add,
+    MC_Delete,
+    MC_Clear,
+    MC_Quit
+};
+
 struct Node
 {
     int value = 0;
@@ -22,18 +31,60 @@ struct LinkedList
     Node* Head = nullptr;
 };
 
-int main()
+void AddList()
 {
-    std::cout << "Hello World!\n";
+    LinkedList Head, list;
+    Node* current = list.Head;
+    int Value;
+
+    std::cout << "Enter value to add to list: ";
+    cin >> Value;
+
+    while (current != nullptr && current->Next != nullptr)
+        current = current->Next;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+//void DisplayMenu(MenuCommand menuCommand)
+//{
+//    char input;
+//    std::cout << "Main Menu" << endl;
+//    std::cout << left << setw(15) << setfill('-') << "" << setfill(' ') << endl;
+//    std::cout << "L) ist " << endl;
+//    std::cout << "A) dd" << endl;
+//    std::cout << "D) elete " << endl;
+//    std::cout << "C) lear " << endl;
+//    std::cout << "Q) uit " << endl;
+//    std::cout << "Enter Menu Choice: ";
+//    cin >> input;
+//
+//    do
+//    {
+//        switch (input)
+//        {
+//            case 'A':
+//            case 'a': menuCommand = MenuCommand::MC_Add; break;
+//
+//            case 'L':
+//            case 'l': menuCommand = MenuCommand::MC_List; break;
+//
+//            case 'D':
+//            case 'd': menuCommand = MenuCommand::MC_Delete; break;
+//
+//            case 'C':
+//            case 'c': menuCommand = MenuCommand::MC_Clear; break;
+//
+//            case 'Q':
+//            case 'q': menuCommand = MenuCommand::MC_Quit; break;
+//
+//            default: std::cout << "ERROR: Bad Input" << endl; break;
+//        };
+//    } while (menuCommand == 0);
+//
+//    cin.ignore();
+//}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int main()
+{
+    /*MenuCommand menuCommand;
+    DisplayMenu(menuCommand);*/
+}
