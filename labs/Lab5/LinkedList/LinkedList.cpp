@@ -29,8 +29,8 @@ enum MenuCommand
 
 struct LinkedList
 {
-    int Current;
-    LinkedList* Next;
+    int Current = 0;
+    LinkedList* Next = nullptr;
     LinkedList* Head = nullptr;
 };
 
@@ -38,15 +38,25 @@ LinkedList* AddFunction()
 {
     LinkedList* Head = nullptr;
     int Current;
-    std::cout << "Enter a value: ";
-    cin >> Current;
+
+    for (int index = 0; index < 3; ++index)
+    {
+        std::cout << "Enter a value: ";
+        cin >> Current;
+    }
+
     LinkedList* List = new LinkedList;
-    List->Next = Head;
+    Current List->Head;
     List->Current = Current;
+    while (Current != nullptr && Current->Next != nullptr)
+        Current = Current->Next;
     return List;
-    /*while (Current != nullptr && Current->Next != nullptr)
-        Current = Current->Next;*/
 }
+
+//LinkedList* ListFunction()
+//{
+//
+//}
 
 void DisplayMenu(MenuCommand menuCommand)
 {
