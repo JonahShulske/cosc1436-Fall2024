@@ -18,7 +18,7 @@ enum MenuCommand
     MC_Clear,
     MC_Quit
 };
-
+//
 //struct Node
 //{
 //    int value = 0;
@@ -29,16 +29,23 @@ enum MenuCommand
 
 struct LinkedList
 {
-    LinkedList* Next = nullptr;
+    int Current;
+    LinkedList* Next;
     LinkedList* Head = nullptr;
 };
 
-void AddFunction()
+LinkedList* AddFunction()
 {
-    LinkedList list = new Node;
-    LinkedList* current = list.Head;
-    while (current != nullptr && current->Next != nullptr)
-        current = current->Next;
+    LinkedList* Head = nullptr;
+    int Current;
+    std::cout << "Enter a value: ";
+    cin >> Current;
+    LinkedList* List = new LinkedList;
+    List->Next = Head;
+    List->Current = Current;
+    return List;
+    /*while (Current != nullptr && Current->Next != nullptr)
+        Current = Current->Next;*/
 }
 
 void DisplayMenu(MenuCommand menuCommand)
@@ -82,7 +89,7 @@ void DisplayMenu(MenuCommand menuCommand)
     cin.ignore();
 }
 
-void HandleMovie(MenuCommand menuCommand)
+void HandleMenu(MenuCommand menuCommand)
 {
     switch (menuCommand)
     {
@@ -98,5 +105,6 @@ int main()
 {
     MenuCommand menuCommand = (MenuCommand)0;
     DisplayMenu(menuCommand);
-    HandleMovie(menuCommand);
+    HandleMenu(menuCommand);
+    AddFunction();
 }
