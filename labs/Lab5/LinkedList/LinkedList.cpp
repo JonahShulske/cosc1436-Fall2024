@@ -31,27 +31,50 @@ struct LinkedList
 {
     int Current = 0;
     LinkedList* Next = nullptr;
-    LinkedList* Head = nullptr;
 };
 
-LinkedList* AddFunction()
+LinkedList* AddFunction(LinkedList* Head)
 {
-    LinkedList* Head = nullptr;
-    int Current;
+    LinkedList* List = new LinkedList;
 
     for (int index = 0; index < 3; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> Current;
+        cin >> List->Current;
     }
 
-    LinkedList* List = new LinkedList;
-    Current List->Head;
-    List->Current = Current;
-    while (Current != nullptr && Current->Next != nullptr)
-        Current = Current->Next;
-    return List;
+    List->Next = Head;
+    Head = List;
+
+    return Head;
 }
+
+void ListFunction(LinkedList* Head)
+{
+    for (Head; Head = Head->Next;)
+    {
+        std::cout << Head->Current << endl;
+    }
+}
+
+//LinkedList* AddFunction()
+//{
+//    LinkedList* Head = nullptr;
+//    int Current = 0;
+//
+//    for (int index = 0; index < 3; ++index)
+//    {
+//        std::cout << "Enter a value: ";
+//        cin >> Current;
+//    }
+//
+//    LinkedList* List = new LinkedList;
+//    List->Head;
+//    List->Current = Current;
+//    while (List != nullptr && List->Next != nullptr)
+//        List->Next;
+//    return Current;
+//}
 
 //LinkedList* ListFunction()
 //{
@@ -101,11 +124,12 @@ void DisplayMenu(MenuCommand menuCommand)
 
 void HandleMenu(MenuCommand menuCommand)
 {
+    LinkedList* Head = nullptr;
     switch (menuCommand)
     {
-        case MenuCommand::MC_Add: AddFunction(); break;
-        /*case MenuCommand::MC_List: ListFunction(); break;
-        case MenuCommand::MC_Delete: DeleteFunction(); break;
+        case MenuCommand::MC_Add: AddFunction(Head); break;
+        case MenuCommand::MC_List: ListFunction(Head); break;
+        /*case MenuCommand::MC_Delete: DeleteFunction(); break;
         case MenuCommand::MC_Clear: ClearFunction(); break;
         case MenuCommand::MC_Quit: QuitFunction(); break;*/
     };
@@ -113,8 +137,10 @@ void HandleMenu(MenuCommand menuCommand)
 
 int main()
 {
+    LinkedList* Head = nullptr;
     MenuCommand menuCommand = (MenuCommand)0;
     DisplayMenu(menuCommand);
     HandleMenu(menuCommand);
-    AddFunction();
+    /*AddFunction(Head);
+    ListFunction(Head);*/
 }
