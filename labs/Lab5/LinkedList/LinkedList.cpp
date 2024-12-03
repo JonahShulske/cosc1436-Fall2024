@@ -18,72 +18,56 @@ enum MenuCommand
     MC_Clear,
     MC_Quit
 };
-//
-//struct Node
-//{
-//    int value = 0;
-//    int Current;
-//
-//    Node* Next = nullptr;
-//};
+
+struct Node
+{
+    int Value = 0;
+
+    Node* Next = nullptr;
+};
 
 struct LinkedList
 {
-    int Current = 0;
-    LinkedList* Next = nullptr;
+    Node* Head = nullptr;
 };
 
-LinkedList* AddFunction(LinkedList* Head)
+Node* AddFunction(Node* Head)
 {
-    LinkedList* List = new LinkedList;
+    Node* userNode = new Node;
 
-    for (int index = 0; index < 3; ++index)
+    std::cout << "Enter a value: ";
+    cin >> userNode->Value;
+
+    if (Head == nullptr)
+        Head = userNode;
+
+    else
     {
-        std::cout << "Enter a value: ";
-        cin >> List->Current;
-    }
+        Node* endNode = Head;
+        while (endNode != nullptr && endNode->Next != nullptr)
+            endNode = endNode->Next;
 
-    List->Next = Head;
-    Head = List;
+        endNode->Next = userNode;
+    }
 
     return Head;
 }
 
-void ListFunction(LinkedList* Head)
+void ListFunction(Node* Head)
 {
-    for (Head; Head = Head->Next;)
+    Node* endNode = Head;
+    while (endNode != nullptr && endNode->Next != nullptr)
     {
-        std::cout << Head->Current << endl;
+        std::cout << endNode;
+        endNode = endNode->Next;
     }
 }
 
-//LinkedList* AddFunction()
-//{
-//    LinkedList* Head = nullptr;
-//    int Current = 0;
-//
-//    for (int index = 0; index < 3; ++index)
-//    {
-//        std::cout << "Enter a value: ";
-//        cin >> Current;
-//    }
-//
-//    LinkedList* List = new LinkedList;
-//    List->Head;
-//    List->Current = Current;
-//    while (List != nullptr && List->Next != nullptr)
-//        List->Next;
-//    return Current;
-//}
 
-//LinkedList* ListFunction()
-//{
-//
-//}
-
-void DisplayMenu(MenuCommand menuCommand)
+MenuCommand DisplayMenu()
 {
-   
+    MenuCommand menuCommand;
+
     std::cout << "Main Menu" << endl;
     std::cout << left << setw(15) << setfill('-') << "" << setfill(' ') << endl;
     std::cout << "L) ist " << endl;
@@ -120,11 +104,13 @@ void DisplayMenu(MenuCommand menuCommand)
     } while (menuCommand == 0);
 
     cin.ignore();
+
+    return menuCommand;
 }
 
 void HandleMenu(MenuCommand menuCommand)
 {
-    LinkedList* Head = nullptr;
+    Node* Head = nullptr;
     switch (menuCommand)
     {
         case MenuCommand::MC_Add: AddFunction(Head); break;
@@ -137,9 +123,8 @@ void HandleMenu(MenuCommand menuCommand)
 
 int main()
 {
-    LinkedList* Head = nullptr;
-    MenuCommand menuCommand = (MenuCommand)0;
-    DisplayMenu(menuCommand);
+    Node* Head = nullptr;
+    MenuCommand menuCommand = DisplayMenu();
     HandleMenu(menuCommand);
     /*AddFunction(Head);
     ListFunction(Head);*/
