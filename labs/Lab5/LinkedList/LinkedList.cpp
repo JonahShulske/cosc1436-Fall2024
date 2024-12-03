@@ -60,13 +60,32 @@ void ListFunction(Node* Head)
     {
         std::cout << endNode;
         endNode = endNode->Next;
-    }
+        std::cout << endNode;
+    };
+}
+
+void DeleteFunction(Node* Head)
+{
+    Node* Previous = nullptr;
+    Node* endNode = Head;
+
+    std::cout << "Enter value to delete: ";
+    cin >> 
+
+    while (endNode != nullptr)
+    {
+        Previous = endNode;
+        endNode = endNode->Next;
+
+        if (endNode != nullptr && endNode->Next != nullptr)
+            Head = Head->Next;
+    };
 }
 
 
 MenuCommand DisplayMenu()
 {
-    MenuCommand menuCommand;
+    MenuCommand menuCommand = MenuCommand(0);
 
     std::cout << "Main Menu" << endl;
     std::cout << left << setw(15) << setfill('-') << "" << setfill(' ') << endl;
@@ -115,8 +134,8 @@ void HandleMenu(MenuCommand menuCommand)
     {
         case MenuCommand::MC_Add: AddFunction(Head); break;
         case MenuCommand::MC_List: ListFunction(Head); break;
-        /*case MenuCommand::MC_Delete: DeleteFunction(); break;
-        case MenuCommand::MC_Clear: ClearFunction(); break;
+        case MenuCommand::MC_Delete: DeleteFunction(Head); break;
+        /*case MenuCommand::MC_Clear: ClearFunction(); break;
         case MenuCommand::MC_Quit: QuitFunction(); break;*/
     };
 }
@@ -124,8 +143,12 @@ void HandleMenu(MenuCommand menuCommand)
 int main()
 {
     Node* Head = nullptr;
-    MenuCommand menuCommand = DisplayMenu();
-    HandleMenu(menuCommand);
+   
+    while (true)
+    {
+        MenuCommand menuCommand = DisplayMenu();
+        HandleMenu(menuCommand);
+    }
     /*AddFunction(Head);
     ListFunction(Head);*/
 }
