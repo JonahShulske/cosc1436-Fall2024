@@ -6,13 +6,12 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <cmath>
 
 using namespace std;
 
 enum MenuCommand
 {
-    MC_List,
+    MC_List = 1,
     MC_Add,
     MC_Delete,
     MC_Clear,
@@ -60,7 +59,6 @@ void ListFunction(Node* Head)
     {
         std::cout << endNode;
         endNode = endNode->Next;
-        std::cout << endNode;
     };
 }
 
@@ -70,7 +68,7 @@ void DeleteFunction(Node* Head)
     Node* endNode = Head;
 
     std::cout << "Enter value to delete: ";
-    cin >> 
+    cin >> endNode->Value;
 
     while (endNode != nullptr)
     {
