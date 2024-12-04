@@ -27,7 +27,7 @@ struct Node
 
 struct LinkedList
 {
-    Node* Head = nullptr;
+    Node* Head;
 };
 
 Node* AddFunction(Node* Head)
@@ -57,8 +57,8 @@ void ListFunction(Node* Head)
     Node* endNode = Head;
     while (endNode != nullptr && endNode->Next != nullptr)
     {
-        std::cout << endNode;
         endNode = endNode->Next;
+        std::cout << endNode;
     };
 }
 
@@ -140,7 +140,6 @@ void HandleMenu(MenuCommand menuCommand)
 
 int main()
 {
-    Node* Head = nullptr;
    
     while (true)
     {
