@@ -125,9 +125,8 @@ MenuCommand DisplayMenu()
     return menuCommand;
 }
 
-void HandleMenu(MenuCommand menuCommand)
+void HandleMenu(MenuCommand menuCommand, Node*& Head)
 {
-    Node* Head = nullptr;
     switch (menuCommand)
     {
         case MenuCommand::MC_Add: AddFunction(Head); break;
@@ -140,11 +139,12 @@ void HandleMenu(MenuCommand menuCommand)
 
 int main()
 {
+    Node* Head = nullptr;
    
     while (true)
     {
         MenuCommand menuCommand = DisplayMenu();
-        HandleMenu(menuCommand);
+        HandleMenu(menuCommand, Head);
     }
     /*AddFunction(Head);
     ListFunction(Head);*/
