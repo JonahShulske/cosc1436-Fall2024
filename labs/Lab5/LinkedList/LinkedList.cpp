@@ -27,55 +27,64 @@ struct Node
 
 struct LinkedList
 {
-    Node* Head;
+    Node* Head = nullptr;
 };
 
-Node* AddFunction(Node* Head)
+Node* AddFunction(Node* &Head)
 {
+    cout << "\n";
     Node* userNode = new Node;
 
     std::cout << "Enter a value: ";
     cin >> userNode->Value;
+    cout << "\n";
 
     if (Head == nullptr)
+    {
         Head = userNode;
-
+        return Head;
+    }
     else
     {
         Node* endNode = Head;
         while (endNode != nullptr && endNode->Next != nullptr)
+        {
             endNode = endNode->Next;
-
+        }
         endNode->Next = userNode;
     }
-
     return Head;
 }
 
 void ListFunction(Node* Head)
 {
+    cout << "\n";
     Node* endNode = Head;
-    while (endNode == nullptr)
+
+    if (endNode == nullptr)
     {
-        std::cout << "There are no values to list. Select new option" << endl;
+        std::cout << "There are no values to list. Select new option \n " << endl;
+        return;
     }
+
     while (endNode != nullptr && endNode->Next != nullptr)
     {
         endNode = endNode->Next;
         std::cout << endNode->Value << " ";
-        cout << endl;
+        cout << "\n" << endl;
     };
 }
 
 void DeleteFunction(Node* &Head)
 {
+    cout << "\n";
     int deleteValue;
     Node* Previous = nullptr;
     Node* endNode = Head;
 
     if (Head == nullptr)
     {
-        std::cout << "There are no values to delete. Select new option" << endl;
+        std::cout << "There are no values to delete. Select new option \n " << endl;
 
         return;
     }
@@ -94,7 +103,7 @@ void DeleteFunction(Node* &Head)
                 Previous->Next = endNode->Next;
 
             delete endNode;
-            std::cout << "Value has been removed" << endl;
+            std::cout << "Value has been removed \n " << endl;
             return;
         }
 
@@ -103,8 +112,9 @@ void DeleteFunction(Node* &Head)
     };
 }
 
-void ClearFunction(Node* Head)
+void ClearFunction(Node* &Head)
 {
+    cout << "\n";
     char input;
     std::cout << "Are you sure you want to clear all values> (Y/N): ";
     cin >> input;
@@ -120,22 +130,48 @@ void ClearFunction(Node* Head)
             {
                 Node* Next = endNode->Next;
                 delete endNode;
-
                 endNode = Next;
             };
+
             Head = nullptr;
-            std::cout << "All values have been cleared" << endl;
+            std::cout << "All values have been cleared \n " << endl;
         }    break;
 
         case 'N':
         case 'n':
         {
-            std::cout << "Cancelled clearing of Linked List" << endl;
+            std::cout << "Cancelled clearing of Linked List \n " << endl;
         }    break;
 
         default: std::cout << "ERROR: Bad Input" << endl;
     };
 
+}
+
+void QuitFunction()
+{
+    cout << "\n";
+    char input;
+    std::cout << "Are you sure you want to quit? (Y/N): ";
+    cin >> input;
+
+    switch (input)
+    {
+        case 'Y':
+        case 'y':
+        {
+            std::cout << "Quitting Program" << endl;
+            exit(0);
+        }
+
+        case 'N':
+        case 'n':
+        {
+            std::cout << "Quitting Cancelled \n " << endl;
+        }
+
+        default: std::cout << "ERROR: Bad Input \n " << endl;
+    }
 }
 
 
@@ -191,7 +227,7 @@ void HandleMenu(MenuCommand menuCommand, Node*& Head)
         case MenuCommand::MC_List: ListFunction(Head); break;
         case MenuCommand::MC_Delete: DeleteFunction(Head); break;
         case MenuCommand::MC_Clear: ClearFunction(Head); break;
-        //case MenuCommand::MC_Quit: QuitFunction(); break;*/
+        case MenuCommand::MC_Quit: QuitFunction(); break;
     };
 }
 
