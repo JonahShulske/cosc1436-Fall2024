@@ -168,6 +168,7 @@ void QuitFunction()
         case 'n':
         {
             std::cout << "Quitting Cancelled \n " << endl;
+            break;
         }
 
         default: std::cout << "ERROR: Bad Input \n " << endl;
