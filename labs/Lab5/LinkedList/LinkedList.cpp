@@ -55,6 +55,10 @@ Node* AddFunction(Node* Head)
 void ListFunction(Node* Head)
 {
     Node* endNode = Head;
+    while (endNode == nullptr)
+    {
+        std::cout << "There are no values to list. Select new option" << endl;
+    }
     while (endNode != nullptr && endNode->Next != nullptr)
     {
         endNode = endNode->Next;
