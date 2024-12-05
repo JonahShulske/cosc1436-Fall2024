@@ -20,7 +20,7 @@ enum MenuCommand
 
 struct Node
 {
-    int Value = 0;
+    int Value;
 
     Node* Next = nullptr;
 };
@@ -57,17 +57,23 @@ void ListFunction(Node* Head)
     Node* endNode = Head;
     while (endNode != nullptr && endNode->Next != nullptr)
     {
-        std::cout << endNode->Value << " ";
         endNode = endNode->Next;
-        /*endNode = endNode->Next;
-        std::cout << endNode;*/
+        std::cout << endNode->Value << " ";
+        cout << endl;
     };
 }
 
-void DeleteFunction(Node* Head)
+void DeleteFunction(Node* &Head)
 {
     Node* Previous = nullptr;
     Node* endNode = Head;
+
+    if (Head = nullptr)
+    {
+        std::cout << "There are no values to delete. Select new option" << endl;
+        
+        return;
+    }
 
     std::cout << "Enter value to delete: ";
     cin >> endNode->Value;
@@ -76,10 +82,7 @@ void DeleteFunction(Node* Head)
     {
         Previous = endNode;
         endNode = endNode->Next;
-
-        if (endNode != nullptr && endNode->Next != nullptr)
-            Head = Head->Next;
-    };
+    }
 }
 
 
@@ -141,7 +144,7 @@ void HandleMenu(MenuCommand menuCommand, Node*& Head)
 
 int main()
 {
-    Node* Head;
+    Node* Head = new Node();
    
     while (true)
     {
