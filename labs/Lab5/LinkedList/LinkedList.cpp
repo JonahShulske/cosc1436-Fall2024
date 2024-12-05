@@ -20,7 +20,7 @@ enum MenuCommand
 
 struct Node
 {
-    int Value;
+    int Value = 0;
 
     Node* Next = nullptr;
 };
@@ -65,6 +65,7 @@ void ListFunction(Node* Head)
 
 void DeleteFunction(Node* &Head)
 {
+    int deleteValue;
     Node* Previous = nullptr;
     Node* endNode = Head;
 
@@ -76,13 +77,25 @@ void DeleteFunction(Node* &Head)
     }
 
     std::cout << "Enter value to delete: ";
-    cin >> endNode->Value;
+    cin >> deleteValue;
 
     while (endNode != nullptr)
     {
+        if (endNode->Value == deleteValue)
+        {
+            if (Previous == nullptr)
+            {
+                Head = endNode->Next;
+            } else
+                Previous->Next = endNode->Next;
+            delete endNode;
+            std::cout << "Value has been removed";
+
+        }
+
         Previous = endNode;
         endNode = endNode->Next;
-    }
+    };
 }
 
 
