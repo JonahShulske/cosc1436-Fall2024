@@ -28,84 +28,123 @@ void InitializeArray(int values[], int size, int initialValue)
         values[index] = initialValue;
 }
 
-void SeriesArray()
+int SeriesArray(int values[], int maxSize)
 {
-    const int maxSize = 100;
-    int numberSeries[100];
-    InitializeArray(numberSeries, 100, 0);
+    InitializeArray(values, maxSize, 0);
 
+    int count = 0;
     for (int index = 0; index < maxSize; ++index)
     {
         std::cout << "Enter a value: ";
-        cin >> numberSeries[index];
+        cin >> values[index];
 
-        while (numberSeries[index] < 0)
+        while (values[index] < 0)
         {
             std::cout << "Error: Values must be greater than or equal to 0" << endl;
             std::cout << "Enter a value: ";
-            cin >> numberSeries[index];
+            cin >> values[index];
         };
 
-        if (numberSeries[index] == 0)
+        if (values[index] == 0)
             break;
+
+        count++;
     }
 
-    for (int index = 0; index < maxSize; ++index)
-        std::cout << numberSeries[index] << " ";
-       
-    cout << endl;
+    return count;
 }
 
-void LargestNumber()
+void LargestNumber(int values[], int size)
 {
 
-    cout << "TEST";
-    /*int numberSeries[100];
+    if (size <= 0)
+    {
+        std::cout << "There are no values in the array" << endl;
+        return;
+    }
 
-    InitializeArray(numberSeries, 100, 0);
+    int Largest = values[0];
+    for (int index = 1; index < size; ++index)
+    {
+        if (values[index] > Largest)
+            Largest = values[index];
+    }
 
-    for (int index = 0; index < 100; ++index)
-        std::cout << numberSeries[index] << " ";*/
+    std::cout << "The largest number is: " << Largest << endl;
+  
 }
-//
-//void MeanNumber()
-//{
-//
-//}
-//
-//void SmallestNumber()
-//{
-//
-//}
-//
-//void InsertNumber()
-//{
-//
-//}
+
+
+int MeanNumber(int values[], int size)
+{
+    if (size <= 0)
+    {
+        std::cout << "There are no values in the array" << endl;
+        return 0;
+    }
+
+    int sum = 0;
+    for (int index = 0; index < size; ++index)
+    {
+        sum += values[index];
+    }
+
+    std::cout << "The mean of the numbers is : " << (sum / size) << endl;
+    return sum / size;
+}
+
+
+void SmallestNumber(int values[], int size)
+{
+    if (size <= 0)
+    {
+        std::cout << "There are no values in the array" << endl;
+        return;
+    }
+
+    int Smallest = values[0];
+    for (int index = 1; index < size; ++index)
+    {
+        if (values[index] < Smallest)
+            Smallest = values[index];
+    }
+
+    std::cout << "The smallest number is: " << Smallest << endl;
+}
+
+void InsertNumber(int values[], int &size, int maxSize)
+{
+    if (size >= maxSize)
+    {
+        std::cout << "The array is full" << endl;
+        return;
+    }
+
+    int newValue;
+    std::cout << "Enter the value to insert: ";
+    cin >> newValue;
+
+    while (newValue < 0)
+    {
+        std::cout << "Error: Values must be greater than or equal to 0" << endl;
+        std::cout << "Enter a value: ";
+        cin >> newValue;
+    };
+
+    values[size] = newValue;
+    size++;
+
+}
 //
 //void ViewNumbers()
 //{
 //
 //}
 
-void HandleMovie(MenuCommand menuCommand)
+MenuCommand DisplayMenu()
 {
-    switch (menuCommand)
-    {
-        case MenuCommand::MC_Largest: LargestNumber(); break;
-        /*case MenuCommand::MC_Add: Add(); break;
-        case MenuCommand::MC_Mean: MeanNumber(); break;
-        case MenuCommand::MC_Smallest: SmallestNumber(); break;
-        case MenuCommand::MC_Insert: InsertNumber(); break;
-        case MenuCommand::MC_View: ViewNumber(); break;
-        case MenuCommand::MC_Quit: QuitFunction(); break;*/
-    };
-}
+    MenuCommand menuCommand = MenuCommand(0);
 
-
-void DisplayMenu(MenuCommand menuCommand)
-{
-    char input;
     std::cout << "Main Menu" << endl;
     std::cout << left << setw(15) << setfill('-') << "" << setfill(' ') << endl;
     std::cout << "A) dd " << endl;
@@ -116,10 +155,12 @@ void DisplayMenu(MenuCommand menuCommand)
     std::cout << "V) iew " << endl;
     std::cout << "Q) uit " << endl;
     std::cout << "Enter Menu Choice: ";
-    cin >> input;
 
     do
     {
+        char input;
+        cin >> input;
+
         switch (input)
         {
             case 'A':
@@ -148,39 +189,37 @@ void DisplayMenu(MenuCommand menuCommand)
     } while (menuCommand == 0);
 
     cin.ignore();
-};
 
+    return menuCommand;
+}
 
-
-//void SeriesArray(int values[], int maxSize, int initialValue)
-//{
-//    for (int index = 0; index < maxSize; ++index)
-//    {
-//        std::cout << "Enter a value: ";
-//        values[index] = initialValue;
-//
-//        while (values[index] < 0)
-//        {
-//            std::cout << "ERROR: Value must be greater than or equal to 0" << endl;
-//            std::cout << "Enter a value: ";
-//            values[index] = initialValue;
-//        }
-//
-//        if (values[index] == 0)
-//            break;
-//    }
-//}
-
-
+void HandleMenu(MenuCommand menuCommand, int values[], int size)
+{
+    switch (menuCommand)
+    {
+        case MenuCommand::MC_Largest: LargestNumber(values, size); break;
+         //case MenuCommand::MC_Add: Add(); break;
+         case MenuCommand::MC_Mean: MeanNumber(values, size); break;
+         case MenuCommand::MC_Smallest: SmallestNumber(values, size); break;
+         case MenuCommand::MC_Insert: InsertNumber(values, size, 100); break;
+         /*case MenuCommand::MC_View: ViewNumber(); break;
+         case MenuCommand::MC_Quit: QuitFunction(); break;*/
+    };
+}
 
 
 int main()
 {
-    MenuCommand menuCommand = MenuCommand(0);
-    /*MenuCommand menuCommand;*/
-    /*InitializeArray(numberSeries, 101, 0);*/
-    SeriesArray();
-   /* LargestNumber();*/
-    DisplayMenu(menuCommand);
-    HandleMovie(menuCommand);
+    const int maxSize = 100;
+    int numberSeries[maxSize];
+    InitializeArray(numberSeries, maxSize, 0);
+
+    int size = SeriesArray(numberSeries, maxSize);
+
+    while (true)
+    {
+        MenuCommand menuCommand = DisplayMenu();
+        HandleMenu(menuCommand, numberSeries, size);
+    }
+    return 0;
 }
