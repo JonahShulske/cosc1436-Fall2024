@@ -9,7 +9,7 @@
 
 using namespace std;
 
-enum MenuCommand
+enum MenuCommand       // Main menu creation
 {
     MC_List = 1,
     MC_Add,
@@ -18,19 +18,19 @@ enum MenuCommand
     MC_Quit
 };
 
-struct Node
+struct Node // Node to be used for values/next
 {
     int Value = 0;
 
     Node* Next = nullptr;
 };
 
-struct LinkedList
+struct LinkedList  //Linked list to be used by program
 {
     Node* Head = nullptr;
 };
 
-Node* AddFunction(Node* &Head)
+Node* AddFunction(Node* &Head)   // Function for adding values to Linked List
 {
     cout << "\n";
     Node* userNode = new Node;
@@ -56,7 +56,7 @@ Node* AddFunction(Node* &Head)
     return Head;
 }
 
-void ListFunction(Node* Head)
+void ListFunction(Node* Head)     // Function for viewing the list
 {
     cout << "\n";
     Node* endNode = Head;
@@ -75,7 +75,7 @@ void ListFunction(Node* Head)
     };
 }
 
-void DeleteFunction(Node* &Head)
+void DeleteFunction(Node* &Head)     // Function for deleting values from list
 {
     cout << "\n";
     int deleteValue;
@@ -112,11 +112,11 @@ void DeleteFunction(Node* &Head)
     };
 }
 
-void ClearFunction(Node* &Head)
+void ClearFunction(Node* &Head)     // Function for clearing the entire list
 {
     cout << "\n";
     char input;
-    std::cout << "Are you sure you want to clear all values> (Y/N): ";
+    std::cout << "Are you sure you want to clear all values> (Y/N): ";   // Confirming to user if they actually want to clear the list
     cin >> input;
 
     switch (input)
@@ -148,11 +148,11 @@ void ClearFunction(Node* &Head)
 
 }
 
-void QuitFunction()
+void QuitFunction()  // Function for quitting the program itself
 {
     cout << "\n";
     char input;
-    std::cout << "Are you sure you want to quit? (Y/N): ";
+    std::cout << "Are you sure you want to quit? (Y/N): "; // Confirming user actually wants to quit the program
     cin >> input;
 
     switch (input)
@@ -176,7 +176,7 @@ void QuitFunction()
 }
 
 
-MenuCommand DisplayMenu()
+MenuCommand DisplayMenu()    // Function to display the menu to the user
 {
     MenuCommand menuCommand = MenuCommand(0);
 
@@ -220,9 +220,9 @@ MenuCommand DisplayMenu()
     return menuCommand;
 }
 
-void HandleMenu(MenuCommand menuCommand, Node*& Head)
+void HandleMenu(MenuCommand menuCommand, Node*& Head)   // Function to make sure each other functions will run
 {
-    switch (menuCommand)
+    switch (menuCommand)   // Makes sure the correct function runs
     {
         case MenuCommand::MC_Add: AddFunction(Head); break;
         case MenuCommand::MC_List: ListFunction(Head); break;
@@ -240,7 +240,5 @@ int main()
     {
         MenuCommand menuCommand = DisplayMenu();
         HandleMenu(menuCommand, Head);
-    }
-    /*AddFunction(Head);
-    ListFunction(Head);*/
+    };
 }
