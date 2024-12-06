@@ -196,7 +196,7 @@ MenuCommand DisplayMenu()
 void HandleMenu(MenuCommand menuCommand, int values[], int size)
 {
     switch (menuCommand)
-    {
+    {c
         case MenuCommand::MC_Largest: LargestNumber(values, size); break;
          //case MenuCommand::MC_Add: Add(); break;
          case MenuCommand::MC_Mean: MeanNumber(values, size); break;
