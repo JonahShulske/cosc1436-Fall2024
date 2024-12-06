@@ -10,9 +10,9 @@
 
 using namespace std;
 
-enum MenuCommand
+enum MenuCommand            // Creation of main menu
 {
-    MC_Add,
+    MC_Add = 1,
     MC_Largest,
     MC_Mean,
     MC_Smallest,
@@ -22,13 +22,13 @@ enum MenuCommand
 };
 
 
-void InitializeArray(int values[], int size, int initialValue)
+void InitializeArray(int values[], int size, int initialValue)  // Function to create array for user input
 {
     for (int index = 0; index < size; ++index)
         values[index] = initialValue;
 }
 
-int SeriesArray(int values[], int maxSize)
+int SeriesArray(int values[], int maxSize)  // Function to allow for user input for this array
 {
     InitializeArray(values, maxSize, 0);
 
@@ -54,7 +54,7 @@ int SeriesArray(int values[], int maxSize)
     return count;
 }
 
-void LargestNumber(int values[], int size)
+void LargestNumber(int values[], int size)      // Function to find the largest number entered by user in the array
 {
 
     if (size <= 0)
@@ -71,11 +71,30 @@ void LargestNumber(int values[], int size)
     }
 
     std::cout << "The largest number is: " << Largest << endl;
-  
+
+}
+
+int AddNumbers(int values[], int size)      // Function to add all of the user's entered numbers
+{
+    if (size <= 0)
+    {
+        std::cout << "There are no values in the array" << endl;
+        return 0;
+    }
+
+    int sum = 0;
+
+    for (int index = 0; index < size; ++index)
+    {
+        sum += values[index];
+    }
+
+    std::cout << "The sum of your numbers is: " << sum << endl;
+    return sum;
 }
 
 
-int MeanNumber(int values[], int size)
+int MeanNumber(int values[], int size)      // Function to find the mean of the user's entered numbers
 {
     if (size <= 0)
     {
@@ -94,7 +113,7 @@ int MeanNumber(int values[], int size)
 }
 
 
-void SmallestNumber(int values[], int size)
+void SmallestNumber(int values[], int size)  // Function to find the smallest entered number in the array
 {
     if (size <= 0)
     {
@@ -112,7 +131,7 @@ void SmallestNumber(int values[], int size)
     std::cout << "The smallest number is: " << Smallest << endl;
 }
 
-void InsertNumber(int values[], int &size, int maxSize)
+void InsertNumber(int values[], int &size, int maxSize)     // Function to allow user to insert a number into the array
 {
     if (size >= maxSize)
     {
@@ -135,13 +154,52 @@ void InsertNumber(int values[], int &size, int maxSize)
     size++;
 
 }
-//
-//void ViewNumbers()
-//{
-//
-//}
 
-MenuCommand DisplayMenu()
+void ViewNumbers(int values[], int size)        // Function to display the numbers in the array to user
+{
+    if (size <= 0)
+    {
+        std::cout << "There are no values in this array" << endl;
+        return;
+    }
+
+    std::cout << "The numbers in this array are: ";
+    for (int index = 0; index < size; ++index)
+    {
+        std::cout << values[index] << " ";
+    }
+
+    cout << "\n";
+}
+
+void QuitFunction()  // Function for quitting the program itself
+{
+    cout << "\n";
+    char input;
+    std::cout << "Are you sure you want to quit? (Y/N): "; // Confirming user actually wants to quit the program
+    cin >> input;
+
+    switch (input)
+    {
+        case 'Y':
+        case 'y':
+        {
+            std::cout << "Quitting Program..." << endl;
+            exit(0);
+        }
+
+        case 'N':
+        case 'n':
+        {
+            std::cout << "Quitting Cancelled \n " << endl;
+            break;
+        }
+
+        default: std::cout << "ERROR: Bad Input \n " << endl;
+    }
+}
+
+MenuCommand DisplayMenu()       // Function to display the menu to the user
 {
     MenuCommand menuCommand = MenuCommand(0);
 
@@ -193,19 +251,21 @@ MenuCommand DisplayMenu()
     return menuCommand;
 }
 
-void HandleMenu(MenuCommand menuCommand, int values[], int size)
+void HandleMenu(MenuCommand menuCommand, int values[], int &size, int maxSize)      // Function to handle the menu options
 {
     switch (menuCommand)
-    {c
+    {
         case MenuCommand::MC_Largest: LargestNumber(values, size); break;
-         //case MenuCommand::MC_Add: Add(); break;
-         case MenuCommand::MC_Mean: MeanNumber(values, size); break;
-         case MenuCommand::MC_Smallest: SmallestNumber(values, size); break;
-         case MenuCommand::MC_Insert: InsertNumber(values, size, 100); break;
-         /*case MenuCommand::MC_View: ViewNumber(); break;
-         case MenuCommand::MC_Quit: QuitFunction(); break;*/
+        case MenuCommand::MC_Add: AddNumbers(values, size); break;
+        case MenuCommand::MC_Mean: MeanNumber(values, size); break;
+        case MenuCommand::MC_Smallest: SmallestNumber(values, size); break;
+        case MenuCommand::MC_Insert: InsertNumber(values, size, maxSize); break;
+        case MenuCommand::MC_View: ViewNumbers(values, size); break;
+        case MenuCommand::MC_Quit: QuitFunction(); break;
     };
 }
+
+
 
 
 int main()
@@ -219,7 +279,7 @@ int main()
     while (true)
     {
         MenuCommand menuCommand = DisplayMenu();
-        HandleMenu(menuCommand, numberSeries, size);
+        HandleMenu(menuCommand, numberSeries, size, maxSize);
     }
     return 0;
 }
